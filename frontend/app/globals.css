@@ -5,7 +5,10 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  /* Shadcn */
+  /* =========================
+     Shadcn
+     ========================= */
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
@@ -33,17 +36,25 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  /* Adiban */
+  /* =========================
+     Adiban Brand
+     ========================= */
+
   --color-primary-hover: var(--primary-hover);
   --color-primary-dark: var(--primary-dark);
   --color-primary-deep: var(--primary-deep);
-  --color-primary-darkest: var(--primary-darkest);
-  --color-primary-light: var(--primary-light);
-  --color-primary-soft: var(--primary-soft);
+
+  --color-secondary-blue: var(--secondary-blue);
+  --color-blue-dark: var(--blue-dark);
+  --color-blue-deep: var(--blue-deep);
+
+  --color-green-soft: var(--green-soft);
+  --color-blue-soft: var(--blue-soft);
 
   --color-off-white: var(--off-white);
   --color-gray: var(--gray);
   --color-dark: var(--dark);
+  --color-navy: var(--navy);
 
   /* Radius */
   --radius-sm: calc(var(--radius) * 0.6);
@@ -60,81 +71,105 @@
      Adiban Brand Colors
      ========================= */
 
-  --primary: #00a300;
+  /* Green — Main Brand */
+  --primary: #00a651;
   --primary-foreground: #ffffff;
 
-  --primary-hover: #008a00;
-  --primary-dark: #006b00;
-  --primary-deep: #004d00;
-  --primary-darkest: #003300;
+  --primary-hover: #008f45;
+  --primary-dark: #00783a;
+  --primary-deep: #005c2d;
 
-  --primary-light: #33b833;
-  --primary-soft: #e6f7e6;
+  /* Blue — Secondary Brand */
+  --secondary-blue: #087ea4;
+  --blue-dark: #06627f;
+  --blue-deep: #044b61;
 
   /* =========================
-     Neutral Colors
+     Background / Text
      ========================= */
 
-  --background: #ffffff;
-  --foreground: #111827;
+   --background: #E4EDF0;
+   --foreground: #14213d;
 
-  --card: #ffffff;
-  --card-foreground: #111827;
+   --card: #ffffff;
+   --card-foreground: #14213d;
 
   --popover: #ffffff;
-  --popover-foreground: #111827;
+  --popover-foreground: #14213d;
 
-  --secondary: #f8faf8;
-  --secondary-foreground: #111827;
+  /* کمی رنگ دارد، ولی خیلی روشن نیست */
+   --secondary: #e8f0f3;
+   --secondary-foreground: #14213d
 
-  --muted: #f8faf8;
-  --muted-foreground: #6b7280;
+   --muted: #e8eef1;
+   --muted-foreground: #52616b;
 
-  --accent: #e6f7e6;
-  --accent-foreground: #006b00;
+  /* =========================
+     Accent
+     ========================= */
+
+  --accent: #087ea4;
+  --accent-foreground: #ffffff;
+
+  /* =========================
+     Soft Colors
+     ========================= */
+
+  --green-soft: #e8f5ee;
+  --blue-soft: #e7f2f6;
+
+  --off-white: #f7f9fa;
+
+  /* =========================
+     Neutral
+     ========================= */
+
+  --gray: #64748b;
+  --dark: #14213d;
+  --navy: #102a43;
+
+  /* =========================
+     System
+     ========================= */
 
   --destructive: #dc2626;
 
-  --border: #dde8dd;
-  --input: #dde8dd;
-  --ring: #00a300;
-
-  /* Adiban Neutral */
-  --off-white: #f8faf8;
-  --gray: #6b7280;
-  --dark: #111827;
+  --border: #d8e1e5;
+  --input: #d8e1e5;
+  --ring: #00a651;
 
   /* Radius */
   --radius: 0.625rem;
 }
 
 .dark {
-  --background: #003300;
-  --foreground: #f8faf8;
+  --background: #0b1720;
+  --foreground: #f1f5f9;
 
-  --card: #004d00;
-  --card-foreground: #ffffff;
+  --card: #10232d;
+  --card-foreground: #f8fafc;
 
-  --popover: #004d00;
-  --popover-foreground: #ffffff;
+  --popover: #10232d;
+  --popover-foreground: #f8fafc;
 
-  --primary: #33b833;
-  --primary-foreground: #003300;
+  /* Green remains the primary color */
+  --primary: #00b85c;
+  --primary-foreground: #06130d;
 
-  --secondary: #006b00;
-  --secondary-foreground: #ffffff;
+  --secondary: #123442;
+  --secondary-foreground: #f8fafc;
 
-  --muted: #004d00;
-  --muted-foreground: #c8e6c8;
+  --muted: #10232d;
+  --muted-foreground: #a8b7c0;
 
-  --accent: #006b00;
+  --accent: #0b91bd;
   --accent-foreground: #ffffff;
 
   --destructive: #ef4444;
 
-  --border: #176b17;
-  --input: #176b17;
-  --ring: #33b833;
+  --border: #28424e;
+  --input: #28424e;
+  --ring: #00b85c;
 }
 
 @layer base {

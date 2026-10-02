@@ -7,7 +7,7 @@ export default function Hero() {
         <HeroSlider />
 
         {/* Preview of the next section */}
-        <div className="h-16 sm:h-20" />
+        <div className="" />
       </div>
     </section>
   );
