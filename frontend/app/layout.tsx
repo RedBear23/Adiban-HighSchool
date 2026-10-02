@@ -3,7 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
 
 export const metadata: Metadata = {
-  title: "ادیبان",
+  title: "دبیرستان ادیبان",
   description: "وب‌سایت مدرسه ادیبان",
 };
 

@@ -18,7 +18,7 @@ const navLinks = [
     href: "/events",
   },
   {
-    label: "کادر مدرسه",
+    label: "معلمان مدرسه",
     href: "/teachers",
   },
   {
