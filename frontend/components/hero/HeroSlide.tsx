@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { buttonVariants } from "@/components/ui/button";
-import type { HeroSlideData } from "./hero-data";
+import type { HeroSlideData } from "./heroـdata";
 
 interface HeroSlideProps {
   slide: HeroSlideData;

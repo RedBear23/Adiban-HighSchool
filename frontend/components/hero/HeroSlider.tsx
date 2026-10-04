@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/carousel";
 
 import HeroSlide from "./HeroSlide";
-import { heroSlides } from "./hero-data";
+import { heroSlides } from "./heroـdata";
 
 export default function HeroSlider() {
   const autoplay = useRef(

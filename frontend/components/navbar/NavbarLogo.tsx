@@ -9,7 +9,7 @@ export default function NavbarLogo() {
       aria-label="صفحه اصلی ادیبان"
     >
       <img
-        src="/images/logo.jpg"
+        src="/logo.jpg"
         alt="لوگوی مدرسه ادیبان"
         width={52}
         height={52}
