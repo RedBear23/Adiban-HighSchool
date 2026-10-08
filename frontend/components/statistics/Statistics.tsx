@@ -18,7 +18,6 @@ export default function Statistics() {
             transition={{ duration: 0.4 }}
             className="text-sm font-semibold text-primary"
           >
-            ادیبان در یک نگاه
           </motion.p>
 
           <motion.h2
@@ -26,7 +25,7 @@ export default function Statistics() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.45, delay: 0.05 }}
-            className="mt-2 text-3xl font-bold tracking-tight text-navy sm:text-4xl"
+            className="inline-block max-w-full rounded-full bg-primary px-6 py-3 text-3xl font-bold tracking-tight text-foreground sm:px-7 sm:py-4 sm:text-4xl"
           >
             آمار کل مدرسه ادیبان 
           </motion.h2>
