@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
+import { Footer } from "@/components/footer/Footer";
 
 export const metadata: Metadata = {
   title: "دبیرستان ادیبان",
@@ -17,6 +18,7 @@ export default function RootLayout({
       <body className="">
         <Navbar />
         {children}
+        <Footer/>
       </body>
     </html>
   );
