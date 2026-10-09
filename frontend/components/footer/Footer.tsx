@@ -11,11 +11,11 @@ import {
 } from "lucide-react";
 
 const footer_links = [
-  { label: "صفحه اصلی", href: "#hero" },
-  { label: "آمار مدرسه", href: "#statistics" },
-  { label: "معلمان مدرسه", href: "#teachers" },
-  { label: "معرفی مدیر مدرسه", href: "#principal" },
-  { label: "دانش‌آموزان ممتاز", href: "#students" },
+  { label: "صفحه اصلی", href: "/#hero" },
+  { label: "آمار مدرسه", href: "/#statistics" },
+  { label: "معلمان مدرسه", href: "/#teachers" },
+  { label: "معرفی مدیر مدرسه", href: "/#principal" },
+  { label: "دانش‌آموزان ممتاز", href: "/#students" },
 ];
 
 const school_address = "اردیبهشت بین بهمن و اسفند";
