@@ -12,7 +12,7 @@ import { top_students_data } from "./top_students_data";
 
 export function TopStudentsSection() {
   return (
-    <section className="px-4 py-10 sm:px-6 lg:px-8">
+    <section className="px-4 py-10 sm:px-6 lg:px-8" id="students">
       <div className="mx-auto max-w-6xl">
         {/* Section Title */}
         <div className="mb-8 text-right">

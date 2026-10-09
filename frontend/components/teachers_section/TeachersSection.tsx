@@ -5,7 +5,7 @@ import { teachers } from "./teacher_data";
 
 export function TeachersSection() {
   return (
-    <section className="py-16" dir="rtl">
+    <section className="py-16" dir="rtl" id="teachers">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-10 flex items-end justify-between gap-6">
           <div>

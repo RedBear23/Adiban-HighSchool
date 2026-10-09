@@ -2,7 +2,7 @@ import { principal_data } from "./principal_data";
 
 export function PrincipalSection() {
   return (
-    <section className="px-4 py-10 sm:px-6 lg:px-8">
+    <section className="px-4 py-10 sm:px-6 lg:px-8" id="principal">
       <div className="mx-auto max-w-6xl">
         {/* Section Title */}
         <div className="mb-8 text-right">

@@ -7,7 +7,7 @@ import { statistics } from "./statistics-data";
 
 export default function Statistics() {
   return (
-    <section className="px-4 py-6  sm:px-6 lg:px-8">
+    <section className="px-4 py-6  sm:px-6 lg:px-8" id="statistics">
       <div className="mx-auto max-w-7xl">
         {/* Section Header */}
         <div className="mb-10 text-right">

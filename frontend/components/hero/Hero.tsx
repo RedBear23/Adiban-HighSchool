@@ -2,12 +2,12 @@ import HeroSlider from "./HeroSlider";
 
 export default function Hero() {
   return (
-    <section className="">
+    <section id="hero">
       <div className="mx-auto w-full">
         <HeroSlider />
 
         {/* Preview of the next section */}
-        <div className="" />
+        <div/>
       </div>
     </section>
   );
