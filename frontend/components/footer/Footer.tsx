@@ -26,23 +26,44 @@ export function Footer() {
     "address" | "phone" | null
   >(null);
 
-  async function copyToClipboard(
-    value: string,
-    field: "address" | "phone",
-  ) {
-    try {
-      await navigator.clipboard.writeText(value);
-      setCopiedField(field);
 
-      setTimeout(() => {
-        setCopiedField((current) =>
-          current === field ? null : current,
-        );
-      }, 1800);
-    } catch {
+async function copyToClipboard(
+  value: string,
+  field: "address" | "phone",
+) {
+  try {
+    await navigator.clipboard.writeText(value);
+  } catch {
+    const textarea = document.createElement("textarea");
+
+    textarea.value = value;
+    textarea.setAttribute("readonly", "");
+    textarea.style.cssText =
+      "position:fixed;top:0;left:0;opacity:0;font-size:16px";
+
+    document.body.appendChild(textarea);
+    textarea.focus();
+    textarea.select();
+    textarea.setSelectionRange(0, value.length);
+
+    const copied = document.execCommand("copy");
+    textarea.remove();
+
+    if (!copied) {
       setCopiedField(null);
+      return;
     }
   }
+
+  setCopiedField(field);
+
+  setTimeout(() => {
+    setCopiedField((current) =>
+      current === field ? null : current,
+    );
+  }, 1800);
+}
+
 
   return (
     <footer

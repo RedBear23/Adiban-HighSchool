@@ -9,9 +9,6 @@ export function TeachersSection() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-10 flex items-end justify-between gap-6">
           <div>
-            <p className="mb-2 text-sm font-medium text-primary">
-              کادر آموزشی
-            </p>
 
             <h2 className="inline-block max-w-full rounded-full bg-primary px-6 py-3 text-3xl font-bold tracking-tight text-foreground sm:px-7 sm:py-4 sm:text-4xl">
               معلمان مدرسه
