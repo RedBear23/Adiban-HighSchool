@@ -16,7 +16,7 @@ export interface HeroSlideData {
 export const heroSlides: HeroSlideData[] = [
   {
     id: 1,
-    image: "/hero/slide-1.png",
+    image: "/hero/slide-1.jpg",
     title: "به مدرسه ادیبان خوش آمدید",
     description:
       "محیطی برای یادگیری، رشد و ساختن آینده‌ای بهتر.",
@@ -31,7 +31,7 @@ export const heroSlides: HeroSlideData[] = [
   },
   {
     id: 2,
-    image: "/hero/slide-2.png",
+    image: "/hero/slide-2.jpg",
     title: "یادگیری، رشد، آینده",
     description:
       "در ادیبان، مسیر یادگیری با تجربه و خلاقیت همراه است.",
@@ -46,7 +46,7 @@ export const heroSlides: HeroSlideData[] = [
   },
   {
     id: 3,
-    image: "/hero/slide-3.png",
+    image: "/hero/slide-3.jpg",
     title: "جامعه‌ای برای رشد",
     description:
       "مدرسه فقط یک مکان برای درس خواندن نیست.",
