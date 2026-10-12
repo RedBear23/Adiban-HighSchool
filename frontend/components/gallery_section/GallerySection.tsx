@@ -10,7 +10,7 @@ import {
   type GalleryImage,
 } from "./gallery_data";
 import { GalleryGrid } from "./GalleryGrid";
-import { GalleryLightbox } from "./GalleryLightbox";
+import { GalleryLightbox } from "./GalleryLightBox";
 
 export function GallerySection() {
   const [activeCategory, setActiveCategory] =

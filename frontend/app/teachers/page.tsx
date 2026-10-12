@@ -1,7 +1,8 @@
+import { TeachersPage } from "@/components/teacher_page/TeachersPage";
 
 
-export default function Teachers(){
+export default function TeachersRoute() {
     return(
-        <div></div>
+        <TeachersPage/>
     )
 }

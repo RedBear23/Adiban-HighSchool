@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 
 const footer_links = [
-  { label: "صفحه اصلی", href: "/#hero" },
+  { label: "صفحه اصلی", href: "/#navbar" },
   { label: "آمار مدرسه", href: "/#statistics" },
   { label: "معلمان مدرسه", href: "/#teachers" },
   { label: "معرفی مدیر مدرسه", href: "/#principal" },
