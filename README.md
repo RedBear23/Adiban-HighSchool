@@ -48,7 +48,7 @@ git --version
 ابتدا Repository را Clone کنید:
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git
+git clone https://github.com/RedBear23/Adiban-HighSchool.git
 ```
 
 سپس وارد پوشه پروژه شوید:
