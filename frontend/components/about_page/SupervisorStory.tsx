@@ -23,22 +23,24 @@ export function SupervisorStory() {
 
         {/* Story Card */}
         <Card className="overflow-hidden rounded-3xl border-0 bg-linear-to-br from-green-soft via-card to-blue-soft shadow-sm">
-          <CardContent className="p-0">
+          <CardContent className="p-5 sm:p-7 lg:p-8">
             <div
-              className="grid items-stretch lg:grid-cols-[0.85fr_1.15fr]"
+              className="grid items-center gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-12"
               dir="rtl"
             >
               {/* Image */}
-              <div className="relative min-h-80 overflow-hidden lg:min-h-107.5">
+              <div className="relative h-80 overflow-hidden rounded-2xl sm:h-95 lg:h-105">
                 <img
                   src={supervisor_data.image}
                   alt={supervisor_data.name}
-                  className="absolute inset-0 h-full w-full object-cover rounded-bl-2xl rounded-tl-2xl"
+                  className="h-full w-full object-cover"
                 />
 
-                <div className="absolute inset-0 bg-linear-to-t from-black/45 via-transparent to-transparent" />
+                {/* Image Overlay */}
+                <div className="absolute inset-0 bg-linear-to-t from-black/55 via-black/5 to-transparent" />
 
-                <div className="absolute bottom-6 right-6 text-white">
+                {/* Supervisor Info */}
+                <div className="absolute bottom-0 right-0 left-0 p-6 text-white">
                   <p className="text-lg font-bold">
                     {supervisor_data.name}
                   </p>
@@ -50,12 +52,12 @@ export function SupervisorStory() {
               </div>
 
               {/* Text */}
-              <div className="flex flex-col justify-center px-6 py-10 sm:px-10 lg:px-14">
-                <span className="text-4xl leading-none text-primary/40">
+              <div className="flex flex-col justify-center px-1 py-4 sm:px-3 lg:px-4">
+                <span className="text-5xl leading-none text-primary/40">
                   “
                 </span>
 
-                <blockquote className="mt-2 text-xl font-semibold leading-9 text-foreground sm:text-2xl">
+                <blockquote className="mt-1 text-xl font-semibold leading-9 text-foreground sm:text-2xl">
                   {supervisor_data.quote}
                 </blockquote>
 
