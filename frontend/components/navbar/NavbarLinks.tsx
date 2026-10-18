@@ -10,14 +10,6 @@ const navLinks = [
     href: "/about",
   },
   {
-    label: "اخبار",
-    href: "/news",
-  },
-  {
-    label: "رویدادها",
-    href: "/events",
-  },
-  {
     label: "معلمان مدرسه",
     href: "/teachers",
   },
