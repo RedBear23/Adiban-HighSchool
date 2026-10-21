@@ -5,12 +5,17 @@ from django.urls import include, path
 
 
 urlpatterns = [
+    # Django Admin
     path("admin/", admin.site.urls),
 
     # API
     path(
         "api/auth/",
         include("apps.accounts.urls"),
+    ),
+    path(
+        "api/news/",
+        include("apps.news.urls"),
     ),
 ]
 
