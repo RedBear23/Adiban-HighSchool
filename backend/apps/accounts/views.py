@@ -16,20 +16,29 @@ class CsrfTokenView(APIView):
     """
     Issue a CSRF token for the frontend.
 
-    The token is stored in the `csrftoken` cookie and is later sent
-    by the frontend through the `X-CSRFToken` header for unsafe requests.
+    Django stores the token in the `csrftoken` cookie.
     """
 
     permission_classes = [AllowAny]
     authentication_classes = []
 
     def get(self, request):
-        get_token(request)
+        csrf_token = get_token(request)
 
-        return Response(
+        response = Response(
             {"detail": "CSRF token آماده است."},
             status=status.HTTP_200_OK,
         )
+
+        response.set_cookie(
+            key="csrftoken",
+            value=csrf_token,
+            httponly=False,
+            samesite="Lax",
+            secure=False,
+        )
+
+        return response
 
 
 class RegisterView(APIView):
