@@ -1,4 +1,5 @@
 from django.contrib.auth import login, logout
+from django.middleware.csrf import get_token
 from rest_framework import status
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
@@ -9,6 +10,26 @@ from .serializers import (
     RegisterSerializer,
     UserSerializer,
 )
+
+
+class CsrfTokenView(APIView):
+    """
+    Issue a CSRF token for the frontend.
+
+    The token is stored in the `csrftoken` cookie and is later sent
+    by the frontend through the `X-CSRFToken` header for unsafe requests.
+    """
+
+    permission_classes = [AllowAny]
+    authentication_classes = []
+
+    def get(self, request):
+        get_token(request)
+
+        return Response(
+            {"detail": "CSRF token آماده است."},
+            status=status.HTTP_200_OK,
+        )
 
 
 class RegisterView(APIView):
