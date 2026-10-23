@@ -7,23 +7,35 @@ import type {
   User,
 } from "@/types/accounts";
 
-
 export async function getCsrfToken(): Promise<void> {
   await api.get("/auth/csrf/");
 }
 
-
 export async function registerUser(
   data: RegisterInput,
 ): Promise<User> {
+  const formData = new FormData();
+
+  formData.append("national_id", data.national_id);
+  formData.append("password", data.password);
+  formData.append("first_name", data.first_name);
+  formData.append("last_name", data.last_name);
+  formData.append("phone_number", data.phone_number);
+
+  if (data.profile_picture) {
+    formData.append(
+      "profile_picture",
+      data.profile_picture,
+    );
+  }
+
   const response = await api.post<User>(
     "/auth/register/",
-    data,
+    formData,
   );
 
   return response.data;
 }
-
 
 export async function loginUser(
   data: LoginInput,
@@ -36,7 +48,6 @@ export async function loginUser(
   return response.data;
 }
 
-
 export async function logoutUser(): Promise<MessageResponse> {
   const response = await api.post<MessageResponse>(
     "/auth/logout/",
@@ -44,7 +55,6 @@ export async function logoutUser(): Promise<MessageResponse> {
 
   return response.data;
 }
-
 
 export async function getCurrentUser(): Promise<User> {
   const response = await api.get<User>(
