@@ -1,4 +1,4 @@
-import { TeachersPage } from "@/components/teacher_page/TeachersPage";
+import { TeachersPage } from "@/components/teachers/TeachersSection";
 
 
 export default function TeachersRoute() {

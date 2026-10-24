@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 import Providers from "@/providers/Providers";
-import Navbar from "@/components/navbar/Navbar";
-import { Footer } from "@/components/footer/Footer";
+import Navbar from "@/components/home/navbar/Navbar";
+import { Footer } from "@/components/home/footer/Footer";
 
 export const metadata: Metadata = {
   title: "دبیرستان ادیبان",

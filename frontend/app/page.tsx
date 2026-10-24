@@ -1,15 +1,15 @@
 import { PrincipalSection } from "@/components/principal_section/PrincipalSection";
-import Hero from "@/components/hero/Hero";
-import Statistics from "@/components/statistics/Statistics";
-import { TeachersSection } from "@/components/teachers_section/TeachersSection";
-import { TopStudentsSection } from "@/components/top_students_section/TopStudentsSection";
+import Hero from "@/components/home/hero/Hero";
+import Statistics from "@/components/home/statistics/Statistics";
+import { TeachersPage } from "@/components/teachers/TeachersSection";
+import { TopStudentsSection } from "@/components/home/top_students_section/TopStudentsSection";
 
 export default function Home() {
   return (
     <main>
       <Hero />
       <Statistics />
-      <TeachersSection/>
+      <TeachersPage/>
       <PrincipalSection/>
       <TopStudentsSection/>
     </main>
