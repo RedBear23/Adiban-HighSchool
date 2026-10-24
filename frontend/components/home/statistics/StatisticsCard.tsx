@@ -1,15 +1,40 @@
-import type { Statistic } from "./statistics-data";
+import {
+  GraduationCap,
+  School,
+  Users,
+  CalendarDays,
+} from "lucide-react";
 
-interface StatisticsCardProps {
-  statistic: Statistic;
-}
+type StatisticsCardProps = {
+  label: string;
+  value: number;
+  description: string;
+  color: "green" | "blue";
+};
+
+const icons = {
+  teachers: GraduationCap,
+  students: Users,
+  classes: School,
+  years: CalendarDays,
+};
 
 export default function StatisticsCard({
-  statistic,
+  label,
+  value,
+  description,
+  color,
 }: StatisticsCardProps) {
-  const Icon = statistic.icon;
+  const Icon =
+    label === "معلمان"
+      ? icons.teachers
+      : label === "دانش‌آموزان"
+        ? icons.students
+        : label === "کلاس‌ها"
+          ? icons.classes
+          : icons.years;
 
-  const isGreen = statistic.color === "green";
+  const isGreen = color === "green";
 
   return (
     <div
@@ -41,18 +66,18 @@ export default function StatisticsCard({
         {/* Number */}
         <div className="text-left" dir="ltr">
           <p className="text-3xl font-bold tracking-tight text-navy">
-            {statistic.value}
+            {value}
           </p>
         </div>
       </div>
 
       <div className="mt-6">
         <h3 className="text-lg font-bold text-dark">
-          {statistic.label}
+          {label}
         </h3>
 
         <p className="mt-1 text-sm text-gray">
-          {statistic.description}
+          {description}
         </p>
       </div>
     </div>

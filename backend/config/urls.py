@@ -17,10 +17,14 @@ urlpatterns = [
         "api/news/",
         include("apps.news.urls"),
     ),
-     path(
+    path(
         "api/teachers/",
         include("apps.teachers.urls")
     ),
+    path(
+        "api/statistics/",
+        include("apps.school_statistics.urls")
+    )
 ]
 
 

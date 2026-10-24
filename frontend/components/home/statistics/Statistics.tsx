@@ -1,13 +1,38 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 
 import StatisticsCard from "./StatisticsCard";
-import { statistics } from "./statistics-data";
+
+import { getStatistics } from "@/services/statistics_services";
+import type { Statistics as StatisticsData } from "@/types/statistics";
 
 export default function Statistics() {
+  const [statistics, setStatistics] =
+    useState<StatisticsData | null>(null);
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadStatistics() {
+      try {
+        const data = await getStatistics();
+
+        setStatistics(data);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    loadStatistics();
+  }, []);
+
   return (
-    <section className="px-4 py-6  sm:px-6 lg:px-8" id="statistics">
+    <section
+      className="px-4 py-6 sm:px-6 lg:px-8"
+      id="statistics"
+    >
       <div className="mx-auto max-w-7xl">
         {/* Section Header */}
         <div className="mb-10 text-right">
@@ -17,8 +42,7 @@ export default function Statistics() {
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
             className="text-sm font-semibold text-primary"
-          >
-          </motion.p>
+          />
 
           <motion.h2
             initial={{ opacity: 0, y: 10 }}
@@ -27,7 +51,7 @@ export default function Statistics() {
             transition={{ duration: 0.45, delay: 0.05 }}
             className="inline-block max-w-full rounded-full bg-primary px-6 py-3 text-3xl font-bold tracking-tight text-foreground sm:px-7 sm:py-4 sm:text-4xl"
           >
-            آمار کل مدرسه ادیبان 
+            آمار کل مدرسه ادیبان
           </motion.h2>
 
           <motion.p
@@ -43,22 +67,69 @@ export default function Statistics() {
         </div>
 
         {/* Statistics */}
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {statistics.map((statistic, index) => (
+        {isLoading ? (
+          <div className="py-12 text-center text-sm text-muted-foreground">
+            در حال دریافت آمار مدرسه...
+          </div>
+        ) : statistics ? (
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <motion.div
-              key={statistic.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
-              transition={{
-                duration: 0.45,
-                delay: index * 0.08,
-              }}
+              transition={{ duration: 0.45 }}
             >
-              <StatisticsCard statistic={statistic} />
+              <StatisticsCard
+                label="معلمان"
+                value={statistics.teachers_count}
+                description="تعداد معلمان مدرسه ادیبان"
+                color="green"
+              />
             </motion.div>
-          ))}
-        </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.45, delay: 0.08 }}
+            >
+              <StatisticsCard
+                label="دانش‌آموزان"
+                value={statistics.students_count}
+                description="تعداد دانش‌آموزان مدرسه ادیبان"
+                color="blue"
+              />
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.45, delay: 0.16 }}
+            >
+              <StatisticsCard
+                label="کلاس‌ها"
+                value={statistics.classes_count}
+                description="تعداد کلاس‌های فعال مدرسه"
+                color="green"
+              />
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.45, delay: 0.24 }}
+            >
+              <StatisticsCard
+                label="رشته‌های تحصیلی"
+                value={statistics.major_count}
+                description="رشته‌های تحصیلی ارائه‌شده در مدرسه"
+                color="blue"
+              />
+            </motion.div>
+          </div>
+        ) : null}
       </div>
     </section>
   );
