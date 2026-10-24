@@ -24,7 +24,11 @@ urlpatterns = [
     path(
         "api/statistics/",
         include("apps.school_statistics.urls")
-    )
+    ),
+    path(
+        "api/gallery/",
+        include("apps.gallery.urls"),
+    ),
 ]
 
 

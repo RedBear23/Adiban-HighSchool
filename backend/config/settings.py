@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     "apps.accounts.apps.AccountsConfig",
     "apps.news.apps.NewsConfig",
     "apps.teachers.apps.TeachersConfig",
-    "apps.school_statistics.apps.SchoolStatisticsConfig"
+    "apps.school_statistics.apps.SchoolStatisticsConfig",
+    "apps.gallery.apps.GalleryConfig",
 ]
 
 MIDDLEWARE = [
