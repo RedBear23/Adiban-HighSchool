@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     # Local
     "apps.accounts.apps.AccountsConfig",
     "apps.news.apps.NewsConfig",
+    "apps.teachers.apps.TeachersConfig",
 ]
 
 MIDDLEWARE = [

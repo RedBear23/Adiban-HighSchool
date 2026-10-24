@@ -17,6 +17,10 @@ urlpatterns = [
         "api/news/",
         include("apps.news.urls"),
     ),
+     path(
+        "api/teachers/",
+        include("apps.teachers.urls")
+    ),
 ]
 
 
