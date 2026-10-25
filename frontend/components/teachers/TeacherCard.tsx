@@ -37,7 +37,7 @@ export function TeacherCard({ teacher }: TeacherCardProps) {
         </div>
 
         <h2 className="text-xl font-bold tracking-tight text-card-foreground">
-          {fullName}
+          استاد {fullName}
         </h2>
 
         <p className="mt-3 line-clamp-3 text-sm leading-7 text-muted-foreground">

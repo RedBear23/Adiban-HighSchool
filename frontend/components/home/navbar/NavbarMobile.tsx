@@ -5,6 +5,11 @@ import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
+import { LoginModal } from "@/components/auth/LoginModal";
+import { RegisterModal } from "@/components/auth/RegisterModal";
+
+import NavbarUser from "./NavbarUser";
+
 const navLinks = [
   {
     label: "خانه",
@@ -31,9 +36,27 @@ const navLinks = [
 export default function NavbarMobile() {
   const [isOpen, setIsOpen] = useState(false);
 
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [isRegisterOpen, setIsRegisterOpen] = useState(false);
+
   const closeMenu = () => {
     setIsOpen(false);
   };
+
+  function openLogin() {
+    setIsRegisterOpen(false);
+    setIsLoginOpen(true);
+  }
+
+  function openRegister() {
+    setIsLoginOpen(false);
+    setIsRegisterOpen(true);
+  }
+
+  function closeModals() {
+    setIsLoginOpen(false);
+    setIsRegisterOpen(false);
+  }
 
   return (
     <div className="lg:hidden">
@@ -54,9 +77,17 @@ export default function NavbarMobile() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="absolute inset-x-0 top-full overflow-hidden border-t border-primary-dark bg-primary shadow-lg"
+            className="absolute inset-x-0 top-full border-t border-primary-dark bg-primary shadow-lg"
           >
             <nav className="mx-auto max-w-7xl px-4 py-4">
+              <div className="mb-3 border-b border-primary-dark pb-3">
+                <NavbarUser
+                  mobile
+                  onLogin={openLogin}
+                  onRegister={openRegister}
+                />
+              </div>
+
               <ul className="flex flex-col gap-1">
                 {navLinks.map((link) => (
                   <li key={link.href}>
@@ -74,6 +105,18 @@ export default function NavbarMobile() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <LoginModal
+        isOpen={isLoginOpen}
+        onClose={closeModals}
+        onRegister={openRegister}
+      />
+
+      <RegisterModal
+        isOpen={isRegisterOpen}
+        onClose={closeModals}
+        onLogin={openLogin}
+      />
     </div>
   );
 }
