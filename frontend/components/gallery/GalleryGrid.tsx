@@ -1,8 +1,8 @@
-
 "use client";
 
-import type { GalleryImage } from "./gallery_data";
-import { GalleryImageCard } from "./GalleryImageCard";
+import type { GalleryImage } from "@/types/gallery";
+
+import { GalleryImageCard } from "./GalleryImage";
 
 type GalleryGridProps = {
   images: GalleryImage[];

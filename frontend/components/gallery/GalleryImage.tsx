@@ -1,9 +1,8 @@
-
 "use client";
 
 import { ArrowUpLeft } from "lucide-react";
 
-import type { GalleryImage } from "./gallery_data";
+import type { GalleryImage } from "@/types/gallery";
 
 type GalleryImageCardProps = {
   image: GalleryImage;
@@ -18,12 +17,12 @@ export function GalleryImageCard({
     <button
       type="button"
       onClick={onClick}
-      aria-label={`مشاهده تصویر ${image.title}`}
+      aria-label={`مشاهده تصویر ${image.name}`}
       className="group relative mb-5 block w-full break-inside-avoid overflow-hidden rounded-2xl border border-border bg-card text-right"
     >
       <img
         src={image.image}
-        alt={image.title}
+        alt={image.name}
         loading="lazy"
         className="block h-auto w-full transition-transform duration-500 group-hover:scale-105"
       />
@@ -32,10 +31,11 @@ export function GalleryImageCard({
         <div className="flex items-end justify-between gap-3">
           <div>
             <h3 className="text-lg font-semibold">
-              {image.title}
+              {image.name}
             </h3>
+
             <p className="mt-1 text-sm text-white/80">
-              {image.description}
+              {image.short_description}
             </p>
           </div>
 

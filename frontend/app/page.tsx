@@ -1,4 +1,4 @@
-import { PrincipalSection } from "@/components/principal_section/PrincipalSection";
+import { PrincipalSection } from "@/components/principal/PrincipalSection";
 import Hero from "@/components/home/hero/Hero";
 import Statistics from "@/components/home/statistics/Statistics";
 import { TeachersPage } from "@/components/teachers/TeachersSection";

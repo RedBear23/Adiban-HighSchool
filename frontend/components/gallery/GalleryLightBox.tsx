@@ -1,10 +1,9 @@
-
 "use client";
 
 import { useEffect } from "react";
 import { X } from "lucide-react";
 
-import type { GalleryImage } from "./gallery_data";
+import type { GalleryImage } from "@/types/gallery";
 
 type GalleryLightboxProps = {
   image: GalleryImage;
@@ -36,7 +35,7 @@ export function GalleryLightbox({
     <div
       role="dialog"
       aria-modal="true"
-      aria-label={image.title}
+      aria-label={image.name}
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm"
       onClick={onClose}
     >
@@ -55,16 +54,17 @@ export function GalleryLightbox({
       >
         <img
           src={image.image}
-          alt={image.title}
+          alt={image.name}
           className="max-h-[78vh] w-full rounded-xl object-contain"
         />
 
         <figcaption className="mt-4 text-center text-white">
           <h2 className="text-lg font-semibold">
-            {image.title}
+            {image.name}
           </h2>
+
           <p className="mt-2 text-sm text-white/70">
-            {image.description}
+            {image.short_description}
           </p>
         </figcaption>
       </figure>

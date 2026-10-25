@@ -1,29 +1,72 @@
-
 "use client";
 
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
-import {
-  gallery_categories,
-  gallery_images,
-  type GalleryCategory,
-  type GalleryImage,
-} from "./gallery_data";
+import { getGalleryImages } from "@/services/gallery_services";
+import type {
+  GalleryImage,
+  GallerySubject,
+} from "@/types/gallery";
+
 import { GalleryGrid } from "./GalleryGrid";
 import { GalleryLightbox } from "./GalleryLightBox";
 
+type GalleryCategory = {
+  value: "all" | GallerySubject;
+  label: string;
+};
+
+const gallery_categories: GalleryCategory[] = [
+  {
+    value: "all",
+    label: "همه",
+  },
+  {
+    value: "school",
+    label: "محیط مدرسه",
+  },
+  {
+    value: "activities",
+    label: "فعالیت‌ها",
+  },
+  {
+    value: "events",
+    label: "مراسم‌ها",
+  },
+];
+
 export function GallerySection() {
+  const [images, setImages] = useState<GalleryImage[]>([]);
   const [activeCategory, setActiveCategory] =
-    useState<GalleryCategory | "all">("all");
+    useState<GalleryCategory["value"]>("all");
 
   const [selectedImage, setSelectedImage] =
     useState<GalleryImage | null>(null);
 
-  const filteredImages = gallery_images.filter(
-    (image) =>
-      activeCategory === "all" ||
-      image.category === activeCategory,
-  );
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadGallery() {
+      try {
+        const data = await getGalleryImages();
+        setImages(data);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    loadGallery();
+  }, []);
+
+  const filteredImages = useMemo(() => {
+    if (activeCategory === "all") {
+      return images;
+    }
+
+    return images.filter(
+      (image) => image.subject === activeCategory,
+    );
+  }, [images, activeCategory]);
 
   return (
     <section
@@ -81,10 +124,16 @@ export function GallerySection() {
         })}
       </div>
 
-      <GalleryGrid
-        images={filteredImages}
-        onImageClick={setSelectedImage}
-      />
+      {isLoading ? (
+        <p className="py-16 text-center text-muted-foreground">
+          در حال دریافت تصاویر گالری...
+        </p>
+      ) : (
+        <GalleryGrid
+          images={filteredImages}
+          onImageClick={setSelectedImage}
+        />
+      )}
 
       {selectedImage && (
         <GalleryLightbox

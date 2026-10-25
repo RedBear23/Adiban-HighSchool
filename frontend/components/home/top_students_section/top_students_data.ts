@@ -23,7 +23,7 @@ export const top_students_data: TopStudent[] = [
   },
   {
     name: "ماهان ظاهری",
-    image: "/students/student-5.jpg",
+    image: "/students/student-7.jpg",
     score: "19.65",
     grade: "یازدهم",
     field: "علوم تجربی",
