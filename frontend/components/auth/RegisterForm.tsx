@@ -1,8 +1,15 @@
+"use client";
+
 import { useState } from "react";
 import { Eye, EyeOff, Loader2, UserPlus } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-import type { RegisterInput } from "@/types/accounts";
 import { registerUser } from "@/services/auth_services";
+import {
+  registerSchema,
+  type RegisterFormValues,
+} from "@/schemas/auth.schemas";
 
 type RegisterFormProps = {
   onSuccess?: () => void;
@@ -13,50 +20,38 @@ export function RegisterForm({
   onSuccess,
   onLoginClick,
 }: RegisterFormProps) {
-  const [form, setForm] = useState<RegisterInput>({
-    national_id: "",
-    password: "",
-    first_name: "",
-    last_name: "",
-    phone_number: "",
+  const [showPassword, setShowPassword] = useState(false);
+  const [serverError, setServerError] = useState<string | null>(null);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<RegisterFormValues>({
+    resolver: zodResolver(registerSchema),
+    defaultValues: {
+      national_id: "",
+      password: "",
+      first_name: "",
+      last_name: "",
+      phone_number: "",
+      profile_picture: null,
+    },
   });
 
-  const [showPassword, setShowPassword] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  function handleChange(
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) {
-    const { name, value } = event.target;
-
-    setForm((current) => ({
-      ...current,
-      [name]: value,
-    }));
-
-    if (error) {
-      setError(null);
-    }
-  }
-
-  async function handleSubmit(
-    event: React.FormEvent<HTMLFormElement>,
-  ) {
-    event.preventDefault();
-
-    setError(null);
-    setLoading(true);
-
+  async function onSubmit(data: RegisterFormValues) {
     try {
-      await registerUser(form);
+      setServerError(null);
+
+     await registerUser(data);
+
       onSuccess?.();
-    } catch {
-      setError(
+    } catch (error) {
+      console.error("Register error:", error);
+
+      setServerError(
         "ثبت‌نام انجام نشد. لطفاً اطلاعات واردشده را بررسی کنید.",
       );
-    } finally {
-      setLoading(false);
     }
   }
 
@@ -78,7 +73,7 @@ export function RegisterForm({
       </div>
 
       <form
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit(onSubmit)}
         className="space-y-4"
       >
         {/* First name / Last name */}
@@ -93,16 +88,19 @@ export function RegisterForm({
 
             <input
               id="first_name"
-              name="first_name"
               type="text"
-              value={form.first_name}
-              onChange={handleChange}
               placeholder="نام"
               autoComplete="given-name"
-              required
-              disabled={loading}
+              disabled={isSubmitting}
               className="h-11 w-full rounded-xl border border-input bg-background px-3.5 text-sm text-foreground outline-none transition placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-ring/20 disabled:cursor-not-allowed disabled:opacity-60"
+              {...register("first_name")}
             />
+
+            {errors.first_name?.message && (
+              <p className="text-xs text-destructive">
+                {errors.first_name.message}
+              </p>
+            )}
           </div>
 
           <div className="space-y-2">
@@ -115,16 +113,19 @@ export function RegisterForm({
 
             <input
               id="last_name"
-              name="last_name"
               type="text"
-              value={form.last_name}
-              onChange={handleChange}
               placeholder="نام خانوادگی"
               autoComplete="family-name"
-              required
-              disabled={loading}
+              disabled={isSubmitting}
               className="h-11 w-full rounded-xl border border-input bg-background px-3.5 text-sm text-foreground outline-none transition placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-ring/20 disabled:cursor-not-allowed disabled:opacity-60"
+              {...register("last_name")}
             />
+
+            {errors.last_name?.message && (
+              <p className="text-xs text-destructive">
+                {errors.last_name.message}
+              </p>
+            )}
           </div>
         </div>
 
@@ -139,18 +140,21 @@ export function RegisterForm({
 
           <input
             id="national_id"
-            name="national_id"
             type="text"
             inputMode="numeric"
             dir="ltr"
-            value={form.national_id}
-            onChange={handleChange}
             placeholder="کد ملی"
             autoComplete="username"
-            required
-            disabled={loading}
+            disabled={isSubmitting}
             className="h-11 w-full rounded-xl border border-input bg-background px-3.5 text-left text-sm text-foreground outline-none transition placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-ring/20 disabled:cursor-not-allowed disabled:opacity-60"
+            {...register("national_id")}
           />
+
+          {errors.national_id?.message && (
+            <p className="text-xs text-destructive">
+              {errors.national_id.message}
+            </p>
+          )}
         </div>
 
         {/* Phone */}
@@ -164,18 +168,21 @@ export function RegisterForm({
 
           <input
             id="phone_number"
-            name="phone_number"
             type="tel"
             inputMode="tel"
             dir="ltr"
-            value={form.phone_number}
-            onChange={handleChange}
             placeholder="09xxxxxxxxx"
             autoComplete="tel"
-            required
-            disabled={loading}
+            disabled={isSubmitting}
             className="h-11 w-full rounded-xl border border-input bg-background px-3.5 text-left text-sm text-foreground outline-none transition placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-ring/20 disabled:cursor-not-allowed disabled:opacity-60"
+            {...register("phone_number")}
           />
+
+          {errors.phone_number?.message && (
+            <p className="text-xs text-destructive">
+              {errors.phone_number.message}
+            </p>
+          )}
         </div>
 
         {/* Password */}
@@ -190,16 +197,13 @@ export function RegisterForm({
           <div className="relative">
             <input
               id="register-password"
-              name="password"
               type={showPassword ? "text" : "password"}
-              value={form.password}
-              onChange={handleChange}
               placeholder="رمز عبور"
               autoComplete="new-password"
-              required
-              disabled={loading}
               dir="ltr"
+              disabled={isSubmitting}
               className="h-11 w-full rounded-xl border border-input bg-background px-3.5 pl-11 text-left text-sm text-foreground outline-none transition placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-ring/20 disabled:cursor-not-allowed disabled:opacity-60"
+              {...register("password")}
             />
 
             <button
@@ -207,7 +211,7 @@ export function RegisterForm({
               onClick={() =>
                 setShowPassword((current) => !current)
               }
-              disabled={loading}
+              disabled={isSubmitting}
               aria-label={
                 showPassword
                   ? "مخفی کردن رمز عبور"
@@ -222,22 +226,28 @@ export function RegisterForm({
               )}
             </button>
           </div>
+
+          {errors.password?.message && (
+            <p className="text-xs text-destructive">
+              {errors.password.message}
+            </p>
+          )}
         </div>
 
         {/* Error */}
-        {error && (
+        {serverError && (
           <div className="rounded-xl border border-destructive/20 bg-destructive/10 px-3.5 py-3 text-sm text-destructive">
-            {error}
+            {serverError}
           </div>
         )}
 
         {/* Submit */}
         <button
           type="submit"
-          disabled={loading}
+          disabled={isSubmitting}
           className="flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 text-sm font-semibold text-primary-foreground transition hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-ring/30 disabled:cursor-not-allowed disabled:opacity-60"
         >
-          {loading ? (
+          {isSubmitting ? (
             <>
               <Loader2 className="size-4 animate-spin" />
               در حال ثبت‌نام...

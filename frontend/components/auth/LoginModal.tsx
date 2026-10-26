@@ -115,7 +115,9 @@ export function LoginModal({
                 id="login-password"
                 type={showPassword ? "text" : "password"}
                 placeholder="رمز عبور خود را وارد کنید"
-                className="h-11 w-full rounded-xl border border-input bg-background px-4 pl-11 text-sm text-foreground outline-none transition-all placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-ring/20"
+                autoComplete="current-password"
+                dir="ltr"
+                className="h-11 w-full rounded-xl border border-input bg-background px-4 pl-11 text-left text-sm text-foreground outline-none transition-all placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-ring/20"
                 {...register("password")}
               />
 
