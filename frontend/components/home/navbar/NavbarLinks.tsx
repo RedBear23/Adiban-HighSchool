@@ -1,3 +1,4 @@
+import { label } from "motion/react-client";
 import Link from "next/link";
 
 const navLinks = [
@@ -12,6 +13,10 @@ const navLinks = [
   {
     label: "معلمان مدرسه",
     href: "/teachers",
+  },
+  {
+    label: "اخبار مدرسه",
+    href: "/news"
   },
   {
     label: "گالری",

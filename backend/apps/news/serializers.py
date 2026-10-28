@@ -1,4 +1,5 @@
 from rest_framework import serializers
+import jdatetime
 
 from apps.accounts.models import User
 
@@ -23,6 +24,8 @@ class NewsSerializer(serializers.ModelSerializer):
         read_only=True,
     )
 
+    jalali_date = serializers.SerializerMethodField()
+
     class Meta:
         model = News
         fields = (
@@ -33,13 +36,13 @@ class NewsSerializer(serializers.ModelSerializer):
             "image",
             "author",
             "date",
+            "jalali_date",
             "time",
         )
 
-        read_only_fields = (
-            "id",
-            "slug",
-            "author",
-            "date",
-            "time",
+    def get_jalali_date(self, obj):
+        jalali_date = jdatetime.date.fromgregorian(
+            date=obj.date,
         )
+
+        return jalali_date.strftime("%Y/%m/%d")
