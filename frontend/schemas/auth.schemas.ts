@@ -82,8 +82,45 @@ export const loginSchema = z.object({
     .min(1, "رمز عبور را وارد کنید."),
 });
 
+export const changePasswordSchema = z
+  .object({
+    current_password: z
+      .string()
+      .min(1, "رمز عبور فعلی را وارد کنید."),
+
+    new_password: z
+      .string()
+      .min(
+        8,
+        "رمز عبور جدید باید حداقل ۸ کاراکتر باشد.",
+      )
+      .max(
+        128,
+        "رمز عبور جدید نمی‌تواند بیشتر از ۱۲۸ کاراکتر باشد.",
+      ),
+
+    confirm_password: z
+      .string()
+      .min(
+        1,
+        "تکرار رمز عبور جدید را وارد کنید.",
+      ),
+  })
+  .refine(
+    (data) =>
+      data.new_password === data.confirm_password,
+    {
+      message:
+        "تکرار رمز عبور با رمز عبور جدید مطابقت ندارد.",
+      path: ["confirm_password"],
+    },
+  );
+
 export type RegisterFormValues =
   z.infer<typeof registerSchema>;
 
 export type LoginFormValues =
   z.infer<typeof loginSchema>;
+
+export type ChangePasswordFormValues =
+  z.infer<typeof changePasswordSchema>;

@@ -1,8 +1,10 @@
 import { api } from "./api";
 
 import type {
+  ChangePasswordInput,
   LoginInput,
   MessageResponse,
+  ProfilePictureInput,
   RegisterInput,
   User,
 } from "@/types/accounts";
@@ -59,6 +61,35 @@ export async function logoutUser(): Promise<MessageResponse> {
 export async function getCurrentUser(): Promise<User> {
   const response = await api.get<User>(
     "/auth/me/",
+  );
+
+  return response.data;
+}
+
+export async function updateProfilePicture(
+  data: ProfilePictureInput,
+): Promise<User> {
+  const formData = new FormData();
+
+  formData.append(
+    "profile_picture",
+    data.profile_picture,
+  );
+
+  const response = await api.patch<User>(
+    "/auth/profile-picture/",
+    formData,
+  );
+
+  return response.data;
+}
+
+export async function changePassword(
+  data: ChangePasswordInput,
+): Promise<MessageResponse> {
+  const response = await api.post<MessageResponse>(
+    "/auth/change-password/",
+    data,
   );
 
   return response.data;

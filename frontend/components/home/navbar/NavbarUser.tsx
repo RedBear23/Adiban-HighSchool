@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ChevronDown, LogIn, LogOut, UserRound } from "lucide-react";
+import Link from "next/link";
 
 import { useAuth } from "@/contexts/AuthContext";
 
@@ -196,7 +197,7 @@ export default function NavbarUser({
           <div className="mt-2">
             <div className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-muted-foreground">
               <UserRound className="size-4" />
-              <span>حساب کاربری</span>
+              <Link href="/dashboard">حساب کاربری</Link>
             </div>
 
             <button

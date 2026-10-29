@@ -17,14 +17,7 @@ class UserSerializer(serializers.ModelSerializer):
             "profile_picture",
             "role",
         )
-        read_only_fields = (
-            "id",
-            "national_id",
-            "role",
-        )
-
-    def validate_phone_number(self, value):
-        return normalize_digits(value)
+        read_only_fields = fields
 
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -114,3 +107,73 @@ class LoginSerializer(serializers.Serializer):
         attrs["user"] = user
 
         return attrs
+
+
+class ProfilePictureSerializer(serializers.ModelSerializer):
+    """
+    Allow users to update only their profile picture.
+    """
+
+    class Meta:
+        model = User
+        fields = ("profile_picture",)
+
+
+class ChangePasswordSerializer(serializers.Serializer):
+    """
+    Validate and change the authenticated user's password.
+    """
+
+    current_password = serializers.CharField(
+        write_only=True,
+        trim_whitespace=False,
+    )
+
+    new_password = serializers.CharField(
+        write_only=True,
+        trim_whitespace=False,
+    )
+
+    confirm_password = serializers.CharField(
+        write_only=True,
+        trim_whitespace=False,
+    )
+
+    def validate_current_password(self, value):
+        user = self.context["request"].user
+
+        if not user.check_password(value):
+            raise serializers.ValidationError(
+                "رمز عبور فعلی صحیح نیست."
+            )
+
+        return value
+
+    def validate(self, attrs):
+        if attrs["new_password"] != attrs["confirm_password"]:
+            raise serializers.ValidationError(
+                {
+                    "confirm_password": (
+                        "تکرار رمز عبور با رمز عبور جدید مطابقت ندارد."
+                    )
+                }
+            )
+
+        user = self.context["request"].user
+
+        password_validation.validate_password(
+            attrs["new_password"],
+            user=user,
+        )
+
+        return attrs
+
+    def save(self, **kwargs):
+        user = self.context["request"].user
+
+        user.set_password(
+            self.validated_data["new_password"]
+        )
+        user.save(update_fields=["password"])
+
+        return user

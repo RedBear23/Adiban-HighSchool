@@ -1,11 +1,12 @@
-
 from django.urls import path
 
 from .views import (
+    ChangePasswordView,
     CsrfTokenView,
     CurrentUserView,
     LoginView,
     LogoutView,
+    ProfilePictureView,
     RegisterView,
 )
 
@@ -38,5 +39,15 @@ urlpatterns = [
         "me/",
         CurrentUserView.as_view(),
         name="me",
+    ),
+    path(
+        "profile-picture/",
+        ProfilePictureView.as_view(),
+        name="profile-picture",
+    ),
+    path(
+        "change-password/",
+        ChangePasswordView.as_view(),
+        name="change-password",
     ),
 ]

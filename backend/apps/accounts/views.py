@@ -1,4 +1,4 @@
-from django.contrib.auth import login, logout
+from django.contrib.auth import login, logout, update_session_auth_hash
 from django.middleware.csrf import get_token
 from rest_framework import status
 from rest_framework.permissions import AllowAny, IsAuthenticated
@@ -6,7 +6,9 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .serializers import (
+    ChangePasswordSerializer,
     LoginSerializer,
+    ProfilePictureSerializer,
     RegisterSerializer,
     UserSerializer,
 )
@@ -114,7 +116,7 @@ class LogoutView(APIView):
 
 class CurrentUserView(APIView):
     """
-    Retrieve or update the authenticated user's profile.
+    Retrieve the authenticated user's profile.
     """
 
     permission_classes = [IsAuthenticated]
@@ -130,8 +132,16 @@ class CurrentUserView(APIView):
             status=status.HTTP_200_OK,
         )
 
+
+class ProfilePictureView(APIView):
+    """
+    Update the authenticated user's profile picture.
+    """
+
+    permission_classes = [IsAuthenticated]
+
     def patch(self, request):
-        serializer = UserSerializer(
+        serializer = ProfilePictureSerializer(
             request.user,
             data=request.data,
             partial=True,
@@ -146,5 +156,34 @@ class CurrentUserView(APIView):
                 user,
                 context={"request": request},
             ).data,
+            status=status.HTTP_200_OK,
+        )
+
+
+class ChangePasswordView(APIView):
+    """
+    Change the authenticated user's password.
+    """
+
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        serializer = ChangePasswordSerializer(
+            data=request.data,
+            context={"request": request},
+        )
+        serializer.is_valid(raise_exception=True)
+
+        user = serializer.save()
+
+        update_session_auth_hash(
+            request,
+            user,
+        )
+
+        return Response(
+            {
+                "detail": "رمز عبور با موفقیت تغییر کرد."
+            },
             status=status.HTTP_200_OK,
         )

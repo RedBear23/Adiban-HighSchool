@@ -1,0 +1,4 @@
+export type ApiFieldErrors = Record<
+  string,
+  string[]
+>;

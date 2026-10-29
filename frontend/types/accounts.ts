@@ -31,6 +31,16 @@ export interface LoginInput {
   password: string;
 }
 
+export interface ChangePasswordInput {
+  current_password: string;
+  new_password: string;
+  confirm_password: string;
+}
+
+export interface ProfilePictureInput {
+  profile_picture: File;
+}
+
 export interface MessageResponse {
   detail: string;
 }
