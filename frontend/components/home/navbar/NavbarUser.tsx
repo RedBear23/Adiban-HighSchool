@@ -44,7 +44,7 @@ export default function NavbarUser({
         <button
           type="button"
           onClick={onLogin}
-          className="flex h-10 items-center gap-2 rounded-xl px-3 text-sm font-medium text-white transition-colors hover:bg-primary-dark"
+          className="flex h-10 items-center gap-2 rounded-xl px-3 text-sm font-medium cursor-pointer text-white transition-colors hover:bg-primary-dark"
         >
           <LogIn className="size-4" />
           <span>ورود</span>
@@ -53,7 +53,7 @@ export default function NavbarUser({
         <button
           type="button"
           onClick={onRegister}
-          className="h-10 rounded-xl bg-white px-4 text-sm font-semibold text-primary transition-colors hover:bg-off-white"
+          className="h-10 rounded-xl bg-white px-4 text-sm font-semibold text-primary cursor-pointer transition-colors hover:bg-off-white"
         >
           ثبت‌نام
         </button>
@@ -94,7 +94,7 @@ export default function NavbarUser({
               {fullName}
             </p>
 
-            <p className="mt-0.5 text-xs text-white/70">
+            <p className="mt-0.5 text-xs text-white/70 cursor-pointer">
               حساب کاربری
             </p>
           </div>

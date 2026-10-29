@@ -3,6 +3,8 @@ import NavbarLinks from "./NavbarLinks";
 import NavbarLogo from "./NavbarLogo";
 import NavbarMobile from "./NavbarMobile";
 
+import { NotificationCenter } from "@/components/notifications/NotificationCenter";
+
 export default function Navbar() {
   return (
     <header
@@ -19,6 +21,9 @@ export default function Navbar() {
           <div className="hidden lg:block">
             <NavbarLinks />
           </div>
+
+          {/* Notifications */}
+          <NotificationCenter />
 
           {/* Authentication */}
           <div className="hidden lg:block">

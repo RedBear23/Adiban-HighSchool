@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "apps.teachers.apps.TeachersConfig",
     "apps.school_statistics.apps.SchoolStatisticsConfig",
     "apps.gallery.apps.GalleryConfig",
+    "apps.notifications.apps.NotificationsConfig",
 ]
 
 MIDDLEWARE = [

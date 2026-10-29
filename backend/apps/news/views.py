@@ -6,10 +6,6 @@ from .serializers import NewsSerializer
 
 
 class NewsListCreateView(generics.ListCreateAPIView):
-    """
-    List all news or create a new news item.
-    """
-
     queryset = News.objects.select_related("author").all()
     serializer_class = NewsSerializer
     permission_classes = [NewsPermission]
@@ -21,10 +17,6 @@ class NewsListCreateView(generics.ListCreateAPIView):
 
 
 class NewsDetailView(generics.RetrieveUpdateAPIView):
-    """
-    Retrieve or update a news item using its slug.
-    """
-
     queryset = News.objects.select_related("author").all()
     serializer_class = NewsSerializer
     permission_classes = [NewsPermission]

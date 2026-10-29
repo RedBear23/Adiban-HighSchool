@@ -29,6 +29,10 @@ urlpatterns = [
         "api/gallery/",
         include("apps.gallery.urls"),
     ),
+    path(
+        "api/notifications/",
+        include("apps.notifications.urls"),
+    ),
 ]
 
 

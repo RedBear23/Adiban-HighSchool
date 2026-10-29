@@ -40,8 +40,8 @@ export const heroSlides: HeroSlideData[] = [
       href: "/about",
     },
     secondaryAction: {
-      label: "مشاهده رویدادها",
-      href: "/events",
+      label: "تماس با مدرسه",
+      href: "/contact",
     },
   },
   {
