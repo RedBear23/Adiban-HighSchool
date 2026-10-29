@@ -1,0 +1,333 @@
+:root {
+    --adiban-primary: #00a651;
+    --adiban-primary-hover: #008f45;
+    --adiban-primary-dark: #00783a;
+    --adiban-blue: #087ea4;
+
+    --adiban-background: #e4edf0;
+    --adiban-card: #ffffff;
+    --adiban-text: #14213d;
+    --adiban-muted: #52616b;
+    --adiban-border: #d8e1e5;
+}
+
+/* =========================
+   Header
+   ========================= */
+
+#header {
+    background: var(--adiban-primary);
+}
+
+#branding h1,
+#branding h1 a:link,
+#branding h1 a:visited,
+#site-name a {
+    color: #ffffff;
+}
+
+#user-tools a {
+    color: #ffffff;
+}
+
+/* =========================
+   Main
+   ========================= */
+
+body {
+    background: var(--adiban-background);
+    color: var(--adiban-text);
+}
+
+#content {
+    background: transparent;
+}
+
+/* =========================
+   Links
+   ========================= */
+
+a:link,
+a:visited {
+    color: var(--adiban-primary-dark);
+}
+
+a:hover {
+    color: var(--adiban-primary);
+}
+
+/* =========================
+   Modules
+   ========================= */
+
+.module {
+    border: 1px solid var(--adiban-border);
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--adiban-card);
+}
+
+.module h2,
+.module caption {
+    background: var(--adiban-primary);
+}
+
+/* =========================
+   Buttons
+   ========================= */
+
+input[type="submit"],
+.submit-row input,
+.button,
+a.button {
+    background: var(--adiban-primary);
+    border-radius: 8px;
+}
+
+input[type="submit"]:hover,
+.submit-row input:hover,
+.button:hover,
+a.button:hover {
+    background: var(--adiban-primary-hover);
+}
+
+/* =========================
+   Tables
+   ========================= */
+
+#changelist {
+    background: transparent;
+}
+
+#changelist-form {
+    background: var(--adiban-card);
+    border: 1px solid var(--adiban-border);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#changelist table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--adiban-card);
+}
+
+#changelist thead th {
+    background: var(--adiban-blue-soft);
+    color: var(--adiban-text);
+    border-bottom: 2px solid var(--adiban-border);
+}
+
+#changelist tbody tr {
+    background: #ffffff;
+    border-bottom: 1px solid var(--adiban-border);
+}
+
+#changelist tbody tr:nth-child(even) {
+    background: #f7fafb;
+}
+
+#changelist tbody tr:hover {
+    background: var(--adiban-green-soft);
+}
+
+#changelist tbody td,
+#changelist tbody th {
+    border-bottom: 1px solid var(--adiban-border);
+}
+
+#changelist tbody tr:last-child td,
+#changelist tbody tr:last-child th {
+    border-bottom: none;
+}
+/* =========================
+   Forms
+   ========================= */
+
+input,
+textarea,
+select {
+    border-color: var(--adiban-border);
+    border-radius: 7px;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--adiban-primary);
+    outline: none;
+}
+
+/* =========================
+   Breadcrumbs
+   ========================= */
+
+div.breadcrumbs {
+    background: var(--adiban-blue);
+}
+
+/* =========================
+   Selected / State
+   ========================= */
+
+.selected {
+    background: #e8f5ee !important;
+}
+
+/* =========================
+   Content Areas
+   ========================= */
+
+#content-main {
+    background: transparent;
+}
+
+.module {
+    background: var(--adiban-card);
+}
+
+#content-related {
+    background: transparent;
+}
+
+/* =========================================================
+   Adiban Dark Theme
+   Django: Light / Dark / Auto
+   ========================================================= */
+
+html[data-theme="dark"] {
+    --adiban-primary: #00b85c;
+    --adiban-primary-hover: #00a651;
+    --adiban-primary-dark: #31c978;
+
+    --adiban-blue: #0b91bd;
+
+    --adiban-background: #0b1720;
+    --adiban-card: #10232d;
+    --adiban-text: #f1f5f9;
+    --adiban-muted: #a8b7c0;
+    --adiban-border: #28424e;
+
+    --adiban-green-soft: #12382c;
+    --adiban-blue-soft: #123442;
+
+    /* Django Admin */
+
+    --body-bg: var(--adiban-background);
+    --body-fg: var(--adiban-text);
+
+    --primary: var(--adiban-primary);
+    --secondary: var(--adiban-blue);
+    --accent: #ffffff;
+
+    --header-bg: #071f18;
+    --header-color: #ffffff;
+
+    --breadcrumbs-bg: #0b4052;
+    --breadcrumbs-fg: #ffffff;
+    --breadcrumbs-link-fg: #d9f2fa;
+
+    --link-fg: #45cf86;
+    --link-hover-color: #6ade9f;
+    --link-selected-fg: #31c978;
+
+    --hairline-color: var(--adiban-border);
+    --border-color: var(--adiban-border);
+
+    --darkened-bg: #0d1d25;
+    --selected-bg: var(--adiban-green-soft);
+    --selected-row: #17382d;
+
+    --close-button-bg: #26363b;
+    --close-button-hover-bg: #35494f;
+
+    --delete-button-bg: #b91c1c;
+    --delete-button-hover-bg: #991b1b;
+}
+
+html[data-theme="dark"] body {
+    background: var(--adiban-background);
+    color: var(--adiban-text);
+}
+
+html[data-theme="dark"] .module {
+    background: var(--adiban-card);
+    border-color: var(--adiban-border);
+}
+
+html[data-theme="dark"] #changelist tbody tr {
+    background: var(--adiban-card);
+}
+
+html[data-theme="dark"] #changelist tbody tr:nth-child(even) {
+    background: #0d1d25;
+}
+
+html[data-theme="dark"] #changelist tbody tr:hover {
+    background: var(--adiban-green-soft);
+}
+
+html[data-theme="dark"] input,
+html[data-theme="dark"] textarea,
+html[data-theme="dark"] select {
+    background: #0d1d25;
+    color: var(--adiban-text);
+    border-color: var(--adiban-border);
+}
+
+/* Hide Django Admin auto theme option */
+.theme-toggle .theme-label-auto,
+.theme-toggle .theme-icon-when-auto {
+    display: none;
+}
+
+/* =========================================================
+   Dark Theme - Changelist Filters
+   ========================================================= */
+
+html[data-theme="dark"] #changelist-filter {
+    background: var(--adiban-card);
+    color: var(--adiban-text);
+    border-color: var(--adiban-border);
+}
+
+html[data-theme="dark"] #changelist-filter h2 {
+    background: var(--adiban-blue-soft);
+    color: var(--adiban-text);
+}
+
+html[data-theme="dark"] #changelist-filter h3 {
+    color: var(--adiban-muted);
+}
+
+/* Filter rows */
+html[data-theme="dark"] #changelist-filter li {
+    background: transparent;
+    color: var(--adiban-text);
+}
+
+/* Filter links */
+html[data-theme="dark"] #changelist-filter li a {
+    color: var(--adiban-muted);
+}
+
+/* Selected filter — e.g. "همه" */
+html[data-theme="dark"] #changelist-filter li.selected {
+    background: var(--adiban-green-soft) !important;
+    border-radius: 7px;
+}
+
+html[data-theme="dark"] #changelist-filter li.selected a {
+    color: var(--adiban-primary-dark);
+    font-weight: 600;
+}
+
+/* Hover */
+html[data-theme="dark"] #changelist-filter li:hover {
+    background: var(--adiban-blue-soft);
+    border-radius: 7px;
+}
+
+html[data-theme="dark"] #changelist-filter li:hover a {
+    color: var(--adiban-text);
+}

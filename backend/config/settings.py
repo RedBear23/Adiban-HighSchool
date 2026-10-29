@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "apps.school_statistics.apps.SchoolStatisticsConfig",
     "apps.gallery.apps.GalleryConfig",
     "apps.notifications.apps.NotificationsConfig",
+    "apps.admin_panel.apps.AdminPanelConfig",
 ]
 
 MIDDLEWARE = [
@@ -71,7 +72,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "apps" / "admin_panel" / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
