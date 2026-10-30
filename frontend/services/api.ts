@@ -1,7 +1,15 @@
 import axios from "axios";
 
+function getApiBaseUrl(): string {
+  if (typeof window === "undefined") {
+    return "http://localhost:8000/api";
+  }
+
+  return `http://${window.location.hostname}:8000/api`;
+}
+
 export const api = axios.create({
-  baseURL: "http://localhost:8000/api",
+  baseURL: getApiBaseUrl(),
   withCredentials: true,
 });
 
