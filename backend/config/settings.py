@@ -173,7 +173,7 @@ REST_FRAMEWORK = {
         "apps.accounts.authentication.CookieSessionAuthentication",
     ],
     "DEFAULT_PERMISSION_CLASSES": [
-        "rest_framework.permissions.IsAuthenticated",
+        "rest_framework.permissions.AllowAny",
     ],
 }
 

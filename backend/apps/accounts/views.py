@@ -45,9 +45,11 @@ class CsrfTokenView(APIView):
 
 class RegisterView(APIView):
     """
-    Register a new user.
+    Register a new user and immediately create
+    an authenticated Django session.
 
-    All publicly registered users are created with the student role.
+    All publicly registered users are created
+    with the student role.
     """
 
     permission_classes = [AllowAny]
@@ -61,6 +63,9 @@ class RegisterView(APIView):
 
         user = serializer.save()
 
+        # Immediately authenticate the new user.
+        login(request, user)
+
         return Response(
             UserSerializer(
                 user,
@@ -68,7 +73,6 @@ class RegisterView(APIView):
             ).data,
             status=status.HTTP_201_CREATED,
         )
-
 
 class LoginView(APIView):
     """

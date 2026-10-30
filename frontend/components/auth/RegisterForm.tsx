@@ -8,8 +8,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { registerUser } from "@/services/auth_services";
 import {
   registerSchema,
+  type RegisterFormInput,
   type RegisterFormValues,
 } from "@/schemas/auth.schemas";
+
+import {
+  getApiErrorMessage,
+  getApiFieldErrors,
+} from "@/lib/api_error";
 
 type RegisterFormProps = {
   onSuccess?: () => void;
@@ -23,37 +29,74 @@ export function RegisterForm({
   const [showPassword, setShowPassword] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-  } = useForm<RegisterFormValues>({
-    resolver: zodResolver(registerSchema),
-    defaultValues: {
-      national_id: "",
-      password: "",
-      first_name: "",
-      last_name: "",
-      phone_number: "",
-      profile_picture: null,
-    },
-  });
+const {
+  register,
+  handleSubmit,
+  setError,
+  formState: { errors, isSubmitting },
+} = useForm<
+  RegisterFormInput,
+  unknown,
+  RegisterFormValues
+>({
+  resolver: zodResolver(registerSchema),
 
-  async function onSubmit(data: RegisterFormValues) {
-    try {
-      setServerError(null);
+  defaultValues: {
+    national_id: "",
+    password: "",
+    first_name: "",
+    last_name: "",
+    phone_number: "",
+    profile_picture: null,
+  },
+});
 
-     await registerUser(data);
+async function onSubmit(data: RegisterFormValues) {
+  try {
+    setServerError(null);
 
-      onSuccess?.();
-    } catch (error) {
-      console.error("Register error:", error);
+    await registerUser(data);
 
+    onSuccess?.();
+  } catch (error) {
+    const fieldErrors = getApiFieldErrors(error);
+
+    const registerFields = [
+      "national_id",
+      "first_name",
+      "last_name",
+      "phone_number",
+      "password",
+      "profile_picture",
+    ] as const;
+
+    let hasFieldError = false;
+
+    for (const field of registerFields) {
+      const message = fieldErrors[field]?.[0];
+
+      if (!message) {
+        continue;
+      }
+
+      setError(field, {
+        type: "server",
+        message,
+      });
+
+      hasFieldError = true;
+    }
+
+    if (!hasFieldError) {
       setServerError(
-        "ثبت‌نام انجام نشد. لطفاً اطلاعات واردشده را بررسی کنید.",
+        getApiErrorMessage(
+          error,
+          "ثبت‌نام انجام نشد. لطفاً دوباره تلاش کنید.",
+        ),
       );
     }
   }
+}
 
   return (
     <div className="w-full">

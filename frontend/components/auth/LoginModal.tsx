@@ -8,6 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useAuth } from "@/contexts/AuthContext";
 import {
   loginSchema,
+  type LoginFormInput,
   type LoginFormValues,
 } from "@/schemas/auth.schemas";
 
@@ -33,7 +34,7 @@ export function LoginModal({
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<LoginFormValues>({
+  } = useForm<LoginFormInput, unknown, LoginFormValues>({
     resolver: zodResolver(loginSchema),
   });
 

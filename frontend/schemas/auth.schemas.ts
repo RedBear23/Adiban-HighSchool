@@ -116,11 +116,20 @@ export const changePasswordSchema = z
     },
   );
 
+export type RegisterFormInput =
+  z.input<typeof registerSchema>;
+
 export type RegisterFormValues =
-  z.infer<typeof registerSchema>;
+  z.output<typeof registerSchema>;
+
+export type LoginFormInput =
+  z.input<typeof loginSchema>;
 
 export type LoginFormValues =
-  z.infer<typeof loginSchema>;
+  z.output<typeof loginSchema>;
+
+export type ChangePasswordFormInput =
+  z.input<typeof changePasswordSchema>;
 
 export type ChangePasswordFormValues =
-  z.infer<typeof changePasswordSchema>;
+  z.output<typeof changePasswordSchema>;

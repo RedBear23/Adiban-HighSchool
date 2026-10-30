@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ChevronDown, LogIn, LogOut, UserRound } from "lucide-react";
 import Link from "next/link";
 
@@ -22,11 +22,35 @@ export default function NavbarUser({
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
 
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!isMenuOpen) return;
+
+    function handleDocumentClick(event: MouseEvent) {
+      const target = event.target as Node;
+
+      if (!menuRef.current?.contains(target)) {
+        setIsMenuOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleDocumentClick);
+
+    return () => {
+      document.removeEventListener("mousedown", handleDocumentClick);
+    };
+  }, [isMenuOpen]);
+
+  function closeMenu() {
+    setIsMenuOpen(false);
+  }
+
   async function handleLogout() {
     try {
       setIsLoggingOut(true);
       await logout();
-      setIsMenuOpen(false);
+      closeMenu();
     } finally {
       setIsLoggingOut(false);
     }
@@ -44,7 +68,7 @@ export default function NavbarUser({
         <button
           type="button"
           onClick={onLogin}
-          className="flex h-10 items-center gap-2 rounded-xl px-3 text-sm font-medium cursor-pointer text-white transition-colors hover:bg-primary-dark"
+          className="flex h-10 cursor-pointer items-center gap-2 rounded-xl px-3 text-sm font-medium text-white transition-colors hover:bg-primary-dark"
         >
           <LogIn className="size-4" />
           <span>ورود</span>
@@ -53,7 +77,7 @@ export default function NavbarUser({
         <button
           type="button"
           onClick={onRegister}
-          className="h-10 rounded-xl bg-white px-4 text-sm font-semibold text-primary cursor-pointer transition-colors hover:bg-off-white"
+          className="h-10 cursor-pointer rounded-xl bg-white px-4 text-sm font-semibold text-primary transition-colors hover:bg-off-white"
         >
           ثبت‌نام
         </button>
@@ -69,7 +93,7 @@ export default function NavbarUser({
 
   if (mobile) {
     return (
-      <div className="w-full">
+      <div ref={menuRef} className="w-full">
         <button
           type="button"
           onClick={() => setIsMenuOpen((previous) => !previous)}
@@ -94,7 +118,7 @@ export default function NavbarUser({
               {fullName}
             </p>
 
-            <p className="mt-0.5 text-xs text-white/70 cursor-pointer">
+            <p className="mt-0.5 text-xs text-white/70">
               حساب کاربری
             </p>
           </div>
@@ -122,10 +146,14 @@ export default function NavbarUser({
             </div>
 
             <div className="mt-2">
-              <div className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-muted-foreground">
+              <Link
+                href="/dashboard"
+                onClick={closeMenu}
+                className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-muted-foreground transition-colors hover:bg-muted"
+              >
                 <UserRound className="size-4" />
                 <span>حساب کاربری</span>
-              </div>
+              </Link>
 
               <button
                 type="button"
@@ -134,6 +162,7 @@ export default function NavbarUser({
                 className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-destructive transition-colors hover:bg-destructive/10 disabled:cursor-not-allowed disabled:opacity-60"
               >
                 <LogOut className="size-4" />
+
                 <span>
                   {isLoggingOut
                     ? "در حال خروج..."
@@ -148,7 +177,7 @@ export default function NavbarUser({
   }
 
   return (
-    <div className="relative">
+    <div ref={menuRef} className="relative">
       <button
         type="button"
         onClick={() => setIsMenuOpen((previous) => !previous)}
@@ -195,10 +224,15 @@ export default function NavbarUser({
           </div>
 
           <div className="mt-2">
-            <div className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-muted-foreground">
+            <Link
+              href="/dashboard"
+              onClick={closeMenu}
+              className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-muted-foreground transition-colors hover:bg-muted"
+              role="menuitem"
+            >
               <UserRound className="size-4" />
-              <Link href="/dashboard">حساب کاربری</Link>
-            </div>
+              <span>حساب کاربری</span>
+            </Link>
 
             <button
               type="button"
@@ -207,6 +241,7 @@ export default function NavbarUser({
               className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-destructive transition-colors hover:bg-destructive/10 disabled:cursor-not-allowed disabled:opacity-60"
             >
               <LogOut className="size-4" />
+
               <span>
                 {isLoggingOut
                   ? "در حال خروج..."

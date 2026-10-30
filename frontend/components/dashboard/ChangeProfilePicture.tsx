@@ -71,13 +71,20 @@ export function ChangeProfilePicture({
       });
 
       onUserChange(updatedUser);
-      setFile(null);
-      setPreview(updatedUser.profile_picture);
-      setMessage("تصویر پروفایل با موفقیت تغییر کرد.");
+
+      /*
+       * The upload was successful.
+       * Reload the entire website so every component,
+       * including the navbar, starts with fresh user data.
+       */
+      window.location.href = window.location.href;
     } catch (error) {
       console.error(error);
-      setMessage("تغییر تصویر پروفایل انجام نشد.");
-    } finally {
+
+      setMessage(
+        "تغییر تصویر پروفایل انجام نشد.",
+      );
+
       setIsSubmitting(false);
     }
   }
