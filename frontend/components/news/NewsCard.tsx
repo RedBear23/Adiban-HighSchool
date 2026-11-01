@@ -1,5 +1,8 @@
 import Link from "next/link";
-import { CalendarDays } from "lucide-react";
+import {
+  CalendarDays,
+  Newspaper,
+} from "lucide-react";
 
 import type { News } from "@/types/news";
 
@@ -15,28 +18,57 @@ export function NewsCard({ news }: NewsCardProps) {
     .filter(Boolean)
     .join(" ");
 
+  const authorInitials = [
+    news.author.first_name?.[0],
+    news.author.last_name?.[0],
+  ]
+    .filter(Boolean)
+    .join("");
+
+  const hasImage = Boolean(news.image?.trim());
+
   return (
     <Link
       href={`/news/${news.slug}`}
       className="group block h-full min-w-0"
     >
-      <article className="flex h-full min-w-0 flex-col overflow-hidden rounded-xl bg-card shadow-sm transition-shadow hover:shadow-md">
+      <article
+        className={`flex h-full min-w-0 flex-col overflow-hidden rounded-xl bg-card shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md ${
+          hasImage ? "" : "border border-border"
+        }`}
+      >
         {/* Image */}
-        <div className="relative aspect-video shrink-0 overflow-hidden sm:aspect-4/3">
-          <img
-            src={news.image}
-            alt={news.title}
-            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-          />
-        </div>
+        {hasImage ? (
+          <div className="relative aspect-video shrink-0 overflow-hidden sm:aspect-4/3">
+            <img
+              src={news.image}
+              alt={news.title}
+              className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+            />
+          </div>
+        ) : (
+          <div className="flex min-h-40 flex-1 flex-col items-center justify-center gap-3 bg-green-soft/40 px-5 py-8 sm:min-h-48">
+            <div className="flex size-14 items-center justify-center rounded-2xl bg-green-soft text-primary transition-transform duration-300 group-hover:scale-110">
+              <Newspaper className="size-7" />
+            </div>
+
+            <span className="text-xs font-medium text-primary">
+              اخبار مدرسه ادیبان
+            </span>
+          </div>
+        )}
 
         {/* Content */}
-        <div className="flex flex-1 flex-col p-4 sm:p-5">
+        <div className={`flex flex-1 flex-col p-4 sm:p-5 ${
+          hasImage ? "" : "sm:p-6"
+        }`}>
           <h2 className="line-clamp-2 text-base font-bold leading-7 text-card-foreground sm:text-lg sm:leading-8">
             {news.title}
           </h2>
 
-          <p className="mt-2 line-clamp-2 text-sm leading-6 text-muted-foreground sm:mt-3 sm:leading-7">
+          <p className={`mt-2 line-clamp-2 text-sm leading-6 text-muted-foreground sm:leading-7 ${
+            hasImage ? "sm:mt-3" : "sm:mt-4"
+          }`}>
             {news.descriptions}
           </p>
 
@@ -53,8 +85,9 @@ export function NewsCard({ news }: NewsCardProps) {
                   />
                 ) : (
                   <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-green-soft text-xs font-semibold text-primary">
-                    {news.author.first_name?.[0]}
-                    {news.author.last_name?.[0]}
+                    {authorInitials || (
+                      <Newspaper className="size-4" />
+                    )}
                   </div>
                 )}
 

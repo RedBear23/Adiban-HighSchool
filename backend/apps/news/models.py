@@ -24,6 +24,8 @@ class News(models.Model):
     image = models.ImageField(
         upload_to="news/",
         verbose_name="تصویر خبر",
+        blank=True,
+        null=True,
     )
 
     author = models.ForeignKey(

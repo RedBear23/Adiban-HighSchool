@@ -2,6 +2,7 @@ import {
   CalendarDays,
   Clock,
   UserRound,
+  Newspaper,
 } from "lucide-react";
 
 import type { News } from "@/types/news";
@@ -10,15 +11,15 @@ type NewsDetailProps = {
   news: News;
 };
 
-export function NewsDetail({
-  news,
-}: NewsDetailProps) {
+export function NewsDetail({ news }: NewsDetailProps) {
   const authorName = [
     news.author.first_name,
     news.author.last_name,
   ]
     .filter(Boolean)
     .join(" ");
+
+  const hasImage = Boolean(news.image?.trim());
 
   return (
     <article
@@ -71,14 +72,32 @@ export function NewsDetail({
           </div>
         </header>
 
-        {/* Image */}
-        <div className="overflow-hidden rounded-2xl bg-card">
-          <img
-            src={news.image}
-            alt={news.title}
-            className="aspect-video w-full object-cover"
-          />
-        </div>
+        {/* Image / No Image */}
+        {hasImage ? (
+          <div className="overflow-hidden rounded-2xl bg-card">
+            <img
+              src={news.image}
+              alt={news.title}
+              className="aspect-video w-full object-cover"
+            />
+          </div>
+        ) : (
+          <div className="flex min-h-64 flex-col items-center justify-center gap-5 overflow-hidden rounded-2xl border border-border bg-card px-6 py-12 text-center sm:min-h-80 sm:py-16">
+            <div className="flex size-20 items-center justify-center rounded-3xl bg-green-soft text-primary">
+              <Newspaper className="size-10" />
+            </div>
+
+            <div className="max-w-xl">
+              <span className="text-sm font-medium text-primary">
+                اخبار مدرسه ادیبان
+              </span>
+
+              <h2 className="mt-3 text-xl font-bold leading-9 text-card-foreground sm:text-2xl">
+                {news.title}
+              </h2>
+            </div>
+          </div>
+        )}
 
         {/* Content */}
         <div className="mt-8 rounded-2xl bg-card p-6 sm:p-8">

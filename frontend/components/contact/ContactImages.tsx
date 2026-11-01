@@ -18,14 +18,14 @@ export function ContactImages() {
         <div className="size-20 shrink-0 overflow-hidden rounded-2xl sm:size-24">
           <img
             src="/teachers/supervisor.jpg"
-            alt="ناظم مدرسه ادیبان"
+            alt="معاون مدرسه ادیبان"
             className="h-full w-full object-cover"
           />
         </div>
 
         <div className="min-w-0">
           <span className="text-xs font-medium text-primary">
-            ناظم مدرسه
+            معاون مدرسه
           </span>
 
           <p className="mt-1 font-bold text-foreground">
