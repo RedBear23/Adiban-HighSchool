@@ -8,34 +8,8 @@ import { useState } from "react";
 import { LoginModal } from "@/components/auth/LoginModal";
 import { RegisterModal } from "@/components/auth/RegisterModal";
 
+import { NAV_LINKS } from "./nav_links";
 import NavbarUser from "./NavbarUser";
-
-const navLinks = [
-  {
-    label: "خانه",
-    href: "/",
-  },
-  {
-    label: "درباره مدرسه",
-    href: "/about",
-  },
-  {
-    label: "معلمان مدرسه",
-    href: "/teachers",
-  },
-  {
-    label: "اخبار مدرسه",
-    href: "/news"
-  },
-  {
-    label: "گالری",
-    href: "/gallery",
-  },
-  {
-    label: "تماس با ما",
-    href: "/contact",
-  },
-];
 
 export default function NavbarMobile() {
   const [isOpen, setIsOpen] = useState(false);
@@ -93,7 +67,7 @@ export default function NavbarMobile() {
               </div>
 
               <ul className="flex flex-col gap-1">
-                {navLinks.map((link) => (
+                {NAV_LINKS.map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}

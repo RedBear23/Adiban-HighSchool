@@ -13,20 +13,20 @@ def create_notification_for_role(
     notification_type=Notification.NotificationType.SYSTEM,
     link="",
 ):
-    students = User.objects.filter(
+    recipients = User.objects.filter(
         role=role,
         is_active=True,
     )
 
     notifications = [
         Notification(
-            recipient=student,
+            recipient=recipient,
             title=title,
             message=message,
             notification_type=notification_type,
             link=link,
         )
-        for student in students
+        for recipient in recipients
     ]
 
     return Notification.objects.bulk_create(
@@ -36,7 +36,7 @@ def create_notification_for_role(
 
 def notify_students_about_news(news):
     return create_notification_for_role(
-        role="student",
+        role=User.Role.STUDENT,
         title=news.title,
         message=news.descriptions,
         notification_type=Notification.NotificationType.NEWS,

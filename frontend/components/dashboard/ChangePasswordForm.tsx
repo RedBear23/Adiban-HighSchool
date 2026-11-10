@@ -14,7 +14,7 @@ import { getApiFieldErrors } from "@/lib/api_error";
 import {
   changePasswordSchema,
   type ChangePasswordFormValues,
-} from "@/schemas/auth.schemas";
+} from "@/schemas/auth_schemas";
 import { changePassword } from "@/services/auth_services";
 
 export function ChangePasswordForm() {

@@ -7,7 +7,7 @@ import type { Teacher } from "@/types/teachers";
 
 import { TeacherCard } from "./TeacherCard";
 
-export function TeachersPage() {
+export function TeachersSection() {
   const [teachers, setTeachers] = useState<Teacher[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 

@@ -14,7 +14,6 @@ export interface User {
   phone_number: string;
   profile_picture: string | null;
   role: UserRole;
-  date_joined: string;
 }
 
 export interface RegisterInput {

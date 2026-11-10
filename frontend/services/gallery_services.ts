@@ -7,13 +7,3 @@ export async function getGalleryImages(): Promise<GalleryImage[]> {
 
   return response.data;
 }
-
-export async function getGalleryImage(
-  id: number,
-): Promise<GalleryImage> {
-  const response = await api.get<GalleryImage>(
-    `/gallery/${id}/`,
-  );
-
-  return response.data;
-}

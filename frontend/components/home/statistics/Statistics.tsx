@@ -36,14 +36,6 @@ export default function Statistics() {
       <div className="mx-auto max-w-7xl">
         {/* Section Header */}
         <div className="mb-10 text-right">
-          <motion.p
-            initial={{ opacity: 0, y: 8 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
-            className="text-sm font-semibold text-primary"
-          />
-
           <motion.h2
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}

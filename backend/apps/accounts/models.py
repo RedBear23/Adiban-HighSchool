@@ -100,8 +100,9 @@ class UserManager(BaseUserManager):
         return self._create_user(
             national_id=national_id,
             password=password,
-            **extra_fields,
+            **            extra_fields,
         )
+
 
 class User(AbstractUser):
     class Role(models.TextChoices):

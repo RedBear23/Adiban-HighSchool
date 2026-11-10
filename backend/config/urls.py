@@ -19,11 +19,11 @@ urlpatterns = [
     ),
     path(
         "api/teachers/",
-        include("apps.teachers.urls")
+        include("apps.teachers.urls"),
     ),
     path(
         "api/statistics/",
-        include("apps.school_statistics.urls")
+        include("apps.school_statistics.urls"),
     ),
     path(
         "api/gallery/",

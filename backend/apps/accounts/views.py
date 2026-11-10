@@ -74,6 +74,7 @@ class RegisterView(APIView):
             status=status.HTTP_201_CREATED,
         )
 
+
 class LoginView(APIView):
     """
     Authenticate a user and create a Django session.

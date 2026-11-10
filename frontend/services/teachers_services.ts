@@ -9,13 +9,3 @@ export async function getTeachers(): Promise<Teacher[]> {
 
   return response.data;
 }
-
-export async function getTeacher(
-  id: number,
-): Promise<Teacher> {
-  const response = await api.get<Teacher>(
-    `/teachers/${id}/`,
-  );
-
-  return response.data;
-}

@@ -10,7 +10,7 @@ import {
   registerSchema,
   type RegisterFormInput,
   type RegisterFormValues,
-} from "@/schemas/auth.schemas";
+} from "@/schemas/auth_schemas";
 
 import {
   getApiErrorMessage,
@@ -36,29 +36,29 @@ export function RegisterModal({
 
   const [serverError, setServerError] = useState("");
 
-const {
-  register,
-  handleSubmit,
-  setValue,
-  setError,
-  watch,
-  formState: { errors, isSubmitting },
-} = useForm<
-  RegisterFormInput,
-  unknown,
-  RegisterFormValues
->({
-  resolver: zodResolver(registerSchema),
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    setError,
+    watch,
+    formState: { errors, isSubmitting },
+  } = useForm<
+    RegisterFormInput,
+    unknown,
+    RegisterFormValues
+  >({
+    resolver: zodResolver(registerSchema),
 
-  defaultValues: {
-    national_id: "",
-    first_name: "",
-    last_name: "",
-    phone_number: "",
-    password: "",
-    profile_picture: null,
-  },
-});
+    defaultValues: {
+      national_id: "",
+      first_name: "",
+      last_name: "",
+      phone_number: "",
+      password: "",
+      profile_picture: null,
+    },
+  });
 
   const profilePicture = watch("profile_picture");
 
@@ -66,51 +66,51 @@ const {
     return null;
   }
 
-async function onSubmit(data: RegisterFormValues) {
-  try {
-    setServerError("");
+  async function onSubmit(data: RegisterFormValues) {
+    try {
+      setServerError("");
 
-    await registerUser(data);
-    onClose();
-  } catch (error) {
-    const fieldErrors = getApiFieldErrors(error);
+      await registerUser(data);
+      onClose();
+    } catch (error) {
+      const fieldErrors = getApiFieldErrors(error);
 
-    const registerFields = [
-      "national_id",
-      "first_name",
-      "last_name",
-      "phone_number",
-      "password",
-      "profile_picture",
-    ] as const;
+      const registerFields = [
+        "national_id",
+        "first_name",
+        "last_name",
+        "phone_number",
+        "password",
+        "profile_picture",
+      ] as const;
 
-    let hasFieldError = false;
+      let hasFieldError = false;
 
-    for (const field of registerFields) {
-      const message = fieldErrors[field]?.[0];
+      for (const field of registerFields) {
+        const message = fieldErrors[field]?.[0];
 
-      if (!message) {
-        continue;
+        if (!message) {
+          continue;
+        }
+
+        setError(field, {
+          type: "server",
+          message,
+        });
+
+        hasFieldError = true;
       }
 
-      setError(field, {
-        type: "server",
-        message,
-      });
-
-      hasFieldError = true;
-    }
-
-    if (!hasFieldError) {
-      setServerError(
-        getApiErrorMessage(
-          error,
-          "ثبت‌نام انجام نشد. لطفاً دوباره تلاش کنید.",
-        ),
-      );
+      if (!hasFieldError) {
+        setServerError(
+          getApiErrorMessage(
+            error,
+            "ثبت‌نام انجام نشد. لطفاً دوباره تلاش کنید.",
+          ),
+        );
+      }
     }
   }
-}
 
   return (
     <div

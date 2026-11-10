@@ -10,7 +10,7 @@ import {
   loginSchema,
   type LoginFormInput,
   type LoginFormValues,
-} from "@/schemas/auth.schemas";
+} from "@/schemas/auth_schemas";
 
 import { AuthInput } from "./AuthInput";
 

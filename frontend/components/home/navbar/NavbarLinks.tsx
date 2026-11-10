@@ -1,38 +1,12 @@
-import { label } from "motion/react-client";
 import Link from "next/link";
 
-const navLinks = [
-  {
-    label: "خانه",
-    href: "/",
-  },
-  {
-    label: "درباره مدرسه",
-    href: "/about",
-  },
-  {
-    label: "معلمان مدرسه",
-    href: "/teachers",
-  },
-  {
-    label: "اخبار مدرسه",
-    href: "/news"
-  },
-  {
-    label: "گالری",
-    href: "/gallery",
-  },
-  {
-    label: "تماس با ما",
-    href: "/contact",
-  },
-];
+import { NAV_LINKS } from "./nav_links";
 
 export default function NavbarLinks() {
   return (
     <nav aria-label="ناوبری اصلی">
       <ul className="flex items-center gap-1">
-        {navLinks.map((link) => (
+        {NAV_LINKS.map((link) => (
           <li key={link.href}>
             <Link
               href={link.href}

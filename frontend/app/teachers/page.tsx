@@ -1,8 +1,5 @@
-import { TeachersPage } from "@/components/teachers/TeachersSection";
-
+import { TeachersSection } from "@/components/teachers/TeachersSection";
 
 export default function TeachersRoute() {
-    return(
-        <TeachersPage/>
-    )
+  return <TeachersSection />;
 }
