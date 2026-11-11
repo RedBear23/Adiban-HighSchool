@@ -59,7 +59,7 @@ export function NewsDetail({ news }: NewsDetailProps) {
             <div className="flex items-center gap-1.5">
               <CalendarDays className="size-4 text-primary" />
               <time dateTime={news.date}>
-                {news.date}
+                {news.jalali_date}
               </time>
             </div>
 

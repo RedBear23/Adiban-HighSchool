@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 
-import { NewsDetail } from "@/components/news/NewsDetail";
+import { NewsDetail } from "@/components/home/news/NewsDetail";
 import { getNewsBySlug } from "@/services/news_services";
 import type { News } from "@/types/news";
 

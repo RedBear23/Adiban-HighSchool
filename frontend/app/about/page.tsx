@@ -1,6 +1,7 @@
-import { AboutHero } from "@/components/about/AboutHero";
-import { SchoolStory } from "@/components/about/SchoolStory";
-import { SupervisorStory } from "@/components/about/SupervisorStory";
+import { AboutHero } from "@/components/home/about/AboutHero";
+import { SchoolStory } from "@/components/home/about/SchoolStory";
+import { SupervisorStory } from "@/components/home/about/SupervisorStory";
+
 
 export default function AboutPage() {
   return (

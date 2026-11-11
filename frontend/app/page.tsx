@@ -1,8 +1,8 @@
-import { PrincipalSection } from "@/components/principal/PrincipalSection";
 import Hero from "@/components/home/hero/Hero";
+import { PrincipalSection } from "@/components/home/principal/PrincipalSection";
 import Statistics from "@/components/home/statistics/Statistics";
-import { TeachersSection } from "@/components/teachers/TeachersSection";
-import { TopStudentsSection } from "@/components/home/top_students_section/TopStudentsSection";
+import { TeachersSection } from "@/components/home/teachers/TeachersSection";
+import { TopStudentsSection } from "@/components/home/top_students/TopStudentsSection";
 
 export default function Home() {
   return (

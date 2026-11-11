@@ -1,4 +1,4 @@
-import { NewsSection } from "@/components/news/NewsSection";
+import { NewsSection } from "@/components/home/news/NewsSection";
 
 export default function NewsPage() {
   return <NewsSection />;

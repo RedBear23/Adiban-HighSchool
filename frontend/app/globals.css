@@ -99,7 +99,7 @@
 
   /* کمی رنگ دارد، ولی خیلی روشن نیست */
    --secondary: #e8f0f3;
-   --secondary-foreground: #14213d
+   --secondary-foreground: #14213d;
 
    --muted: #e8eef1;
    --muted-foreground: #52616b;
