@@ -43,7 +43,25 @@ export default function NavbarUser({
 
   if (isLoading) {
     return (
-      <div className="h-10 w-24 animate-pulse rounded-xl bg-muted" />
+      <div
+        aria-label="در حال بررسی وضعیت حساب کاربری"
+        aria-busy="true"
+        className={`flex items-center gap-2 ${
+          mobile ? "w-full" : ""
+        }`}
+      >
+        <div
+          className={`h-11 animate-pulse rounded-xl bg-border ${
+            mobile ? "min-w-0 flex-1" : "h-10 w-20"
+          }`}
+        />
+
+        <div
+          className={`h-11 animate-pulse rounded-xl bg-border ${
+            mobile ? "min-w-0 flex-1" : "h-10 w-24"
+          }`}
+        />
+      </div>
     );
   }
 
@@ -51,16 +69,16 @@ export default function NavbarUser({
     return (
       <div
         className={`flex items-center gap-2 ${
-          mobile ? "w-full flex-col" : ""
+          mobile ? "w-full" : ""
         }`}
       >
         <Button
           type="button"
-          variant="ghost"
+          variant={mobile ? "outline" : "ghost"}
           onClick={onLogin}
           className={
             mobile
-              ? "h-11 w-full justify-start text-navy"
+              ? "h-11 min-w-0 flex-1 rounded-xl border-border bg-card text-navy hover:border-primary/30 hover:bg-green-soft hover:text-primary"
               : "h-10 px-3 text-navy"
           }
         >
@@ -73,7 +91,7 @@ export default function NavbarUser({
           onClick={onRegister}
           className={
             mobile
-              ? "h-11 w-full"
+              ? "h-11 min-w-0 flex-1 rounded-xl"
               : "h-10 px-4"
           }
         >
@@ -110,8 +128,9 @@ export default function NavbarUser({
         className={`
           flex h-11 items-center gap-2 rounded-xl border border-border
           bg-card px-2.5 text-navy transition-colors
-          hover:bg-muted focus-visible:outline-none
-          focus-visible:ring-2 focus-visible:ring-ring
+          hover:border-primary/30 hover:bg-green-soft
+          focus-visible:outline-none focus-visible:ring-2
+          focus-visible:ring-ring
           ${mobile ? "w-full justify-between" : ""}
         `}
       >
@@ -142,9 +161,9 @@ export default function NavbarUser({
       <DropdownMenuContent
         align="end"
         sideOffset={8}
-        className="w-64"
+        className="w-64 rounded-xl border-border bg-popover p-1.5 shadow-lg"
       >
-        <DropdownMenuLabel className="font-normal">
+        <DropdownMenuLabel className="px-3 py-2.5 font-normal">
           <p className="truncate text-sm font-semibold text-foreground">
             {fullName}
           </p>
@@ -154,19 +173,23 @@ export default function NavbarUser({
           </p>
         </DropdownMenuLabel>
 
-        <DropdownMenuSeparator />
+        <DropdownMenuSeparator className="mx-1" />
 
-        <DropdownMenuItem onClick={handleDashboard}>
-          <UserRound className="size-4" />
+        <DropdownMenuItem
+          onClick={handleDashboard}
+          className="cursor-pointer gap-2.5 rounded-lg px-3 py-2.5 text-sm hover:bg-muted"
+        >
+          <UserRound className="size-4 text-muted-foreground" />
           حساب کاربری
         </DropdownMenuItem>
 
-        <DropdownMenuSeparator />
+        <DropdownMenuSeparator className="mx-1" />
 
         <DropdownMenuItem
           variant="destructive"
           disabled={isLoggingOut}
           onClick={handleLogout}
+          className="cursor-pointer gap-2.5 rounded-lg px-3 py-2.5 text-sm"
         >
           <LogOut className="size-4" />
           {isLoggingOut ? "در حال خروج..." : "خروج از حساب"}
