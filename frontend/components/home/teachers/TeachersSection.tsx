@@ -26,7 +26,7 @@ export function TeachersSection() {
   }, []);
 
   return (
-    <section className="px-4 py-10 sm:px-6 lg:px-8" dir="rtl">
+    <section className="px-4 py-10 sm:px-6 lg:px-8" dir="rtl" id="teachers">
       <div className="mx-auto max-w-7xl">
         {/* Section Title */}
         <div className="mb-10 text-right">

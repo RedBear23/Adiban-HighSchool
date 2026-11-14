@@ -1,5 +1,7 @@
+
 "use client";
 
+import Image from "next/image";
 import { useEffect } from "react";
 import { X } from "lucide-react";
 
@@ -24,10 +26,7 @@ export function GalleryLightbox({
     document.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      document.removeEventListener(
-        "keydown",
-        handleKeyDown,
-      );
+      document.removeEventListener("keydown", handleKeyDown);
     };
   }, [onClose]);
 
@@ -52,9 +51,13 @@ export function GalleryLightbox({
         className="max-h-[90vh] max-w-5xl"
         onClick={(event) => event.stopPropagation()}
       >
-        <img
+        <Image
           src={image.image}
           alt={image.name}
+          width={1600}
+          height={1200}
+          unoptimized
+          sizes="(max-width: 1280px) 100vw, 1280px"
           className="max-h-[78vh] w-full rounded-xl object-contain"
         />
 

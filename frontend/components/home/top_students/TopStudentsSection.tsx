@@ -1,3 +1,4 @@
+
 "use client";
 
 import {
@@ -9,6 +10,7 @@ import {
 } from "@/components/ui/carousel";
 
 import { top_students_data } from "./top_students_data";
+import Image from "next/image";
 
 export function TopStudentsSection() {
   return (
@@ -16,7 +18,6 @@ export function TopStudentsSection() {
       <div className="mx-auto max-w-6xl">
         {/* Section Title */}
         <div className="mb-8 text-right">
-
           <h2 className="mt-2 inline-block max-w-full rounded-full bg-primary px-6 py-3 text-3xl font-bold tracking-tight text-foreground sm:px-7 sm:py-4 sm:text-4xl">
             دانش‌آموزان ممتاز
           </h2>
@@ -42,11 +43,14 @@ export function TopStudentsSection() {
                 >
                   <article className="overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-shadow duration-300 hover:shadow-md">
                     {/* Student Image */}
-                    <div className="aspect-4/3 overflow-hidden bg-muted">
-                      <img
+                    <div className="relative aspect-4/3 overflow-hidden bg-muted">
+                      <Image
                         src={student.image}
                         alt={student.name}
-                        className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        unoptimized
+                        className="object-cover transition-transform duration-300 hover:scale-105"
                       />
                     </div>
 

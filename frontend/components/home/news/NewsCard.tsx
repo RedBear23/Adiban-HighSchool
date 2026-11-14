@@ -1,4 +1,6 @@
+
 import Link from "next/link";
+import Image from "next/image";
 import {
   CalendarDays,
   Newspaper,
@@ -40,10 +42,13 @@ export function NewsCard({ news }: NewsCardProps) {
         {/* Image */}
         {hasImage ? (
           <div className="relative aspect-video shrink-0 overflow-hidden sm:aspect-4/3">
-            <img
-              src={news.image}
+            <Image
+              src={news.image!}
               alt={news.title}
-              className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              unoptimized
+              className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
             />
           </div>
         ) : (
@@ -59,16 +64,20 @@ export function NewsCard({ news }: NewsCardProps) {
         )}
 
         {/* Content */}
-        <div className={`flex flex-1 flex-col p-4 sm:p-5 ${
-          hasImage ? "" : "sm:p-6"
-        }`}>
+        <div
+          className={`flex flex-1 flex-col p-4 sm:p-5 ${
+            hasImage ? "" : "sm:p-6"
+          }`}
+        >
           <h2 className="line-clamp-2 text-base font-bold leading-7 text-card-foreground sm:text-lg sm:leading-8">
             {news.title}
           </h2>
 
-          <p className={`mt-2 line-clamp-2 text-sm leading-6 text-muted-foreground sm:leading-7 ${
-            hasImage ? "sm:mt-3" : "sm:mt-4"
-          }`}>
+          <p
+            className={`mt-2 line-clamp-2 text-sm leading-6 text-muted-foreground sm:leading-7 ${
+              hasImage ? "sm:mt-3" : "sm:mt-4"
+            }`}
+          >
             {news.descriptions}
           </p>
 
@@ -78,9 +87,12 @@ export function NewsCard({ news }: NewsCardProps) {
               {/* Author */}
               <div className="flex min-w-0 flex-1 items-center gap-2">
                 {news.author.profile_picture ? (
-                  <img
+                  <Image
                     src={news.author.profile_picture}
                     alt={authorName}
+                    width={32}
+                    height={32}
+                    unoptimized
                     className="size-8 shrink-0 rounded-full object-cover"
                   />
                 ) : (

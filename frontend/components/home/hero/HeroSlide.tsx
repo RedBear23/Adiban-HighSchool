@@ -1,3 +1,5 @@
+
+import Image from "next/image";
 import Link from "next/link";
 
 import { buttonVariants } from "@/components/ui/button";
@@ -10,10 +12,13 @@ interface HeroSlideProps {
 export default function HeroSlide({ slide }: HeroSlideProps) {
   return (
     <div className="relative h-107.5 overflow-hidden rounded-b-2xl sm:h-120 lg:h-130">
-      <img
+      <Image
         src={slide.image}
         alt={slide.title}
-        className="absolute inset-0 h-full w-full object-cover"
+        fill
+        unoptimized
+        sizes="100vw"
+        className="object-cover"
       />
 
       {/* Image overlay */}

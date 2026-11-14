@@ -1,9 +1,20 @@
+
 "use client";
 
-import { AnimatePresence, motion } from "motion/react";
-import { Menu, X } from "lucide-react";
-import Link from "next/link";
 import { useState } from "react";
+import { Menu } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+import { Button } from "@/components/ui/button";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 import { LoginModal } from "@/components/auth/LoginModal";
 import { RegisterModal } from "@/components/auth/RegisterModal";
@@ -12,22 +23,25 @@ import { NAV_LINKS } from "./nav_links";
 import NavbarUser from "./NavbarUser";
 
 export default function NavbarMobile() {
-  const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
+  const [isOpen, setIsOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
 
-  const closeMenu = () => {
+  function closeMenu() {
     setIsOpen(false);
-  };
+  }
 
   function openLogin() {
     setIsRegisterOpen(false);
+    setIsOpen(false);
     setIsLoginOpen(true);
   }
 
   function openRegister() {
     setIsLoginOpen(false);
+    setIsOpen(false);
     setIsRegisterOpen(true);
   }
 
@@ -38,51 +52,84 @@ export default function NavbarMobile() {
 
   return (
     <div className="lg:hidden">
-      <button
-        type="button"
-        onClick={() => setIsOpen((current) => !current)}
-        className="rounded-lg p-2 text-white transition-colors hover:bg-primary-dark"
-        aria-label={isOpen ? "بستن منو" : "باز کردن منو"}
-        aria-expanded={isOpen}
-      >
-        {isOpen ? <X size={26} /> : <Menu size={26} />}
-      </button>
+      <Sheet open={isOpen} onOpenChange={setIsOpen}>
 
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2 }}
-            className="absolute inset-x-0 top-full border-t border-primary-dark bg-primary shadow-lg"
-          >
-            <nav className="mx-auto max-w-7xl px-4 py-4">
-              <div className="mb-3 border-b border-primary-dark pb-3">
-                <NavbarUser
-                  mobile
-                  onLogin={openLogin}
-                  onRegister={openRegister}
-                />
-              </div>
+        <SheetTrigger
+            render={
+              <Button
+                variant="ghost"
+                size="icon-lg"
+                aria-label="باز کردن منو"
+                className="text-navy"
+              >
+                <Menu className="size-5" />
+              </Button>
+            }
+        />
 
+
+        <SheetContent
+          side="right"
+          dir="rtl"
+          className="flex w-[min(88vw,22rem)] flex-col gap-0"
+        >
+          <SheetHeader className="border-b border-border px-5 py-5 text-right">
+            <SheetTitle className="text-lg font-bold text-navy">
+              ادیبان
+            </SheetTitle>
+
+            <SheetDescription>
+              دسترسی سریع به بخش‌های مختلف مدرسه
+            </SheetDescription>
+          </SheetHeader>
+
+          <div className="flex-1 overflow-y-auto px-4 py-5">
+            <NavbarUser
+              mobile
+              onLogin={openLogin}
+              onRegister={openRegister}
+              onNavigate={closeMenu}
+            />
+
+            <div className="my-5 border-t border-border" />
+
+            <nav aria-label="ناوبری موبایل">
               <ul className="flex flex-col gap-1">
-                {NAV_LINKS.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      onClick={closeMenu}
-                      className="block rounded-lg px-4 py-3 text-sm font-medium text-white transition-colors hover:bg-primary-dark"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
+                {NAV_LINKS.map((link) => {
+                  const isActive =
+                    link.href === "/"
+                      ? pathname === "/"
+                      : pathname === link.href ||
+                        pathname.startsWith(`${link.href}/`);
+
+                  return (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        onClick={closeMenu}
+                        aria-current={
+                          isActive ? "page" : undefined
+                        }
+                        className={`
+                          flex items-center rounded-xl px-4 py-3
+                          text-sm font-medium transition-colors
+                          ${
+                            isActive
+                              ? "bg-green-soft text-primary"
+                              : "text-navy hover:bg-muted"
+                          }
+                        `}
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
             </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+        </SheetContent>
+      </Sheet>
 
       <LoginModal
         isOpen={isLoginOpen}

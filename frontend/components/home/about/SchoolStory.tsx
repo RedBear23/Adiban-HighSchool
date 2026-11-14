@@ -1,3 +1,5 @@
+
+import Image from "next/image";
 import { school_story_data } from "./about_data";
 
 export function SchoolStory() {
@@ -6,30 +8,33 @@ export function SchoolStory() {
   return (
     <section className="p-5 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl" dir="rtl">
-          {/* Section Heading */}
-          <div className="mb-12 overflow-hidden rounded-4xl bg-green-soft px-6 py-8 sm:px-10 sm:py-10">
-            <span className="inline-flex rounded-full bg-card px-4 py-2 text-sm font-semibold text-primary shadow-sm">
-              زندگی در مدرسه
-            </span>
+        {/* Section Heading */}
+        <div className="mb-12 overflow-hidden rounded-4xl bg-green-soft px-6 py-8 sm:px-10 sm:py-10">
+          <span className="inline-flex rounded-full bg-card px-4 py-2 text-sm font-semibold text-primary shadow-sm">
+            زندگی در مدرسه
+          </span>
 
-            <h2 className="mt-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-              در میان ادیبان
-            </h2>
+          <h2 className="mt-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+            در میان ادیبان
+          </h2>
 
-            <p className="mt-4 max-w-xl text-sm leading-8 text-muted-foreground sm:text-base">
-              {school_story_data.intro}
-            </p>
-          </div>
+          <p className="mt-4 max-w-xl text-sm leading-8 text-muted-foreground sm:text-base">
+            {school_story_data.intro}
+          </p>
+        </div>
 
         {/* Main Story */}
         <div className="overflow-hidden rounded-4xl border border-border bg-card shadow-sm">
           <div className="grid lg:grid-cols-[1.1fr_0.9fr]">
             {/* Image */}
             <div className="relative min-h-80 overflow-hidden lg:min-h-125">
-              <img
+              <Image
                 src={images.school.src}
                 alt={images.school.alt}
-                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 hover:scale-[1.02]"
+                fill
+                unoptimized
+                sizes="(max-width: 1024px) 100vw, 60vw"
+                className="object-cover transition-transform duration-700 hover:scale-[1.02]"
               />
 
               <div className="absolute inset-x-0 bottom-0 h-40 bg-linear-to-t from-navy/70 to-transparent" />
@@ -75,10 +80,13 @@ export function SchoolStory() {
           <article className="overflow-hidden rounded-4xl border border-border bg-card shadow-sm">
             <div className="grid sm:grid-cols-[0.9fr_1.1fr] lg:grid-cols-1">
               <div className="relative h-64 overflow-hidden lg:h-72">
-                <img
+                <Image
                   src={images.yard.src}
                   alt={images.yard.alt}
-                  className="h-full w-full object-cover transition-transform duration-700 hover:scale-[1.03]"
+                  fill
+                  unoptimized
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover transition-transform duration-700 hover:scale-[1.03]"
                 />
               </div>
 
@@ -103,10 +111,13 @@ export function SchoolStory() {
           <article className="overflow-hidden rounded-4xl border border-border bg-card shadow-sm">
             <div className="grid sm:grid-cols-[1.1fr_0.9fr] lg:grid-cols-1">
               <div className="relative h-64 overflow-hidden lg:h-72">
-                <img
+                <Image
                   src={images.classroom.src}
                   alt={images.classroom.alt}
-                  className="h-full w-full object-cover transition-transform duration-700 hover:scale-[1.03]"
+                  fill
+                  unoptimized
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover transition-transform duration-700 hover:scale-[1.03]"
                 />
               </div>
 
@@ -131,10 +142,13 @@ export function SchoolStory() {
         {/* Final Story */}
         <div className="mt-6 grid overflow-hidden rounded-4xl border border-border bg-card shadow-sm lg:grid-cols-[0.85fr_1.15fr]">
           <div className="relative min-h-70 lg:min-h-90">
-            <img
+            <Image
               src={images.hallway.src}
               alt={images.hallway.alt}
-              className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 hover:scale-[1.02]"
+              fill
+              unoptimized
+              sizes="(max-width: 1024px) 100vw, 45vw"
+              className="object-cover transition-transform duration-700 hover:scale-[1.02]"
             />
           </div>
 
@@ -156,11 +170,11 @@ export function SchoolStory() {
             <div className="mt-8 flex items-center gap-3">
               <span className="h-2 w-2 rounded-full bg-secondary-blue" />
               <span className="h-px w-16 bg-secondary-blue/30" />
-
             </div>
           </div>
         </div>
-                {/* Quote */}
+
+        {/* Quote */}
         <div className="mt-6 overflow-hidden rounded-4xl bg-primary px-6 py-12 text-center shadow-sm sm:px-12 sm:py-14">
           <div className="mx-auto max-w-3xl">
             <span className="text-5xl font-serif leading-none text-white/30">

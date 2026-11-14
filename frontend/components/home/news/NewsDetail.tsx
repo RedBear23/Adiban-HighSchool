@@ -1,3 +1,5 @@
+
+import Image from "next/image";
 import {
   CalendarDays,
   Clock,
@@ -42,9 +44,12 @@ export function NewsDetail({ news }: NewsDetailProps) {
           <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
               {news.author.profile_picture ? (
-                <img
+                <Image
                   src={news.author.profile_picture}
                   alt={authorName}
+                  width={36}
+                  height={36}
+                  unoptimized
                   className="size-9 rounded-full object-cover"
                 />
               ) : (
@@ -74,11 +79,14 @@ export function NewsDetail({ news }: NewsDetailProps) {
 
         {/* Image / No Image */}
         {hasImage ? (
-          <div className="overflow-hidden rounded-2xl bg-card">
-            <img
-              src={news.image}
+          <div className="relative aspect-video overflow-hidden rounded-2xl bg-card">
+            <Image
+              src={news.image!}
               alt={news.title}
-              className="aspect-video w-full object-cover"
+              fill
+              sizes="(max-width: 896px) 100vw, 896px"
+              unoptimized
+              className="object-cover"
             />
           </div>
         ) : (

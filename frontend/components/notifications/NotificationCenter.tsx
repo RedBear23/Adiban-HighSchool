@@ -23,27 +23,37 @@ export function NotificationCenter() {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-  async function loadNotifications() {
-    try {
-      const [notificationsData, unreadCountData] =
-        await Promise.all([
-          getNotifications(),
-          getUnreadNotificationCount(),
-        ]);
+
+useEffect(() => {
+  let isMounted = true;
+
+  Promise.all([
+    getNotifications(),
+    getUnreadNotificationCount(),
+  ])
+    .then(([notificationsData, unreadCountData]) => {
+      if (!isMounted) return;
 
       setNotifications(notificationsData);
       setUnreadCount(unreadCountData);
-    } catch {
+    })
+    .catch(() => {
+      if (!isMounted) return;
+
       setNotifications([]);
       setUnreadCount(0);
-    } finally {
-      setIsLoading(false);
-    }
-  }
+    })
+    .finally(() => {
+      if (isMounted) {
+        setIsLoading(false);
+      }
+    });
 
-  useEffect(() => {
-    loadNotifications();
-  }, []);
+  return () => {
+    isMounted = false;
+  };
+}, []);
+
 
   async function handleNotificationRead(
     notification: Notification,

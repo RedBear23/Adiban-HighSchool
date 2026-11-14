@@ -1,7 +1,8 @@
+
 "use client";
 
 import Autoplay from "embla-carousel-autoplay";
-import { useRef } from "react";
+import { useMemo } from "react";
 
 import {
   Carousel,
@@ -15,11 +16,13 @@ import HeroSlide from "./HeroSlide";
 import { heroSlides } from "./hero_data";
 
 export default function HeroSlider() {
-  const autoplay = useRef(
-    Autoplay({
-      delay: 5000,
-      stopOnInteraction: false,
-    }),
+  const autoplay = useMemo(
+    () =>
+      Autoplay({
+        delay: 5000,
+        stopOnInteraction: false,
+      }),
+    [],
   );
 
   return (
@@ -29,7 +32,7 @@ export default function HeroSlider() {
         direction: "rtl",
         loop: true,
       }}
-      plugins={[autoplay.current]}
+      plugins={[autoplay]}
       className="w-full"
     >
       <CarouselContent className="ml-0">

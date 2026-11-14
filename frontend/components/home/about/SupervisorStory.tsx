@@ -1,3 +1,5 @@
+
+import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { supervisor_data } from "./about_data";
 
@@ -30,10 +32,13 @@ export function SupervisorStory() {
             >
               {/* Image */}
               <div className="relative h-80 overflow-hidden rounded-2xl sm:h-95 lg:h-105">
-                <img
+                <Image
                   src={supervisor_data.image}
                   alt={supervisor_data.name}
-                  className="h-full w-full object-cover"
+                  fill
+                  unoptimized
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                  className="object-cover"
                 />
 
                 {/* Image Overlay */}

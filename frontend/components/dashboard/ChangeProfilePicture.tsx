@@ -6,10 +6,11 @@ import {
   LoaderCircle,
 } from "lucide-react";
 import {
-  ChangeEvent,
+  type ChangeEvent,
   useEffect,
   useState,
 } from "react";
+import Image from "next/image";
 
 import { updateProfilePicture } from "@/services/auth_services";
 import type { User } from "@/types/accounts";
@@ -27,8 +28,7 @@ export function ChangeProfilePicture({
   const [preview, setPreview] = useState<string | null>(
     user.profile_picture,
   );
-  const [isSubmitting, setIsSubmitting] =
-    useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState("");
 
   useEffect(() => {
@@ -81,9 +81,7 @@ export function ChangeProfilePicture({
     } catch (error) {
       console.error(error);
 
-      setMessage(
-        "تغییر تصویر پروفایل انجام نشد.",
-      );
+      setMessage("تغییر تصویر پروفایل انجام نشد.");
 
       setIsSubmitting(false);
     }
@@ -108,12 +106,15 @@ export function ChangeProfilePicture({
       </div>
 
       <div className="mt-6 flex flex-col items-center gap-5 sm:flex-row">
-        <div className="size-24 shrink-0 overflow-hidden rounded-2xl bg-green-soft">
+        <div className="relative size-24 shrink-0 overflow-hidden rounded-2xl bg-green-soft">
           {preview ? (
-            <img
+            <Image
               src={preview}
               alt="پیش‌نمایش تصویر پروفایل"
-              className="h-full w-full object-cover"
+              fill
+              sizes="96px"
+              unoptimized
+              className="object-cover"
             />
           ) : (
             <div className="flex h-full w-full items-center justify-center text-primary">

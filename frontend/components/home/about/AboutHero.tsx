@@ -1,12 +1,19 @@
+
+import Image from "next/image";
+
 export function AboutHero() {
   return (
     <section className="px-4 pt-6 sm:px-6 lg:px-8">
       <div className="relative mx-auto h-105 max-w-7xl overflow-hidden rounded-3xl sm:h-115">
         {/* Background Image */}
-        <img
+        <Image
           src="/hero/slide-2.jpg"
           alt="نمای مدرسه ادیبان"
-          className="h-full w-full object-cover"
+          fill
+          priority
+          unoptimized
+          sizes="(max-width: 1280px) 100vw, 1280px"
+          className="object-cover"
         />
 
         {/* Overlay */}
@@ -18,7 +25,6 @@ export function AboutHero() {
           dir="rtl"
         >
           <div className="max-w-3xl">
-
             <h1 className="text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
               داستان مدرسه ادیبان
             </h1>

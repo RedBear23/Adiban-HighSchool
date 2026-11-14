@@ -1,5 +1,7 @@
+
 "use client";
 
+import Image from "next/image";
 import { ImagePlus, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -9,24 +11,41 @@ type ProfilePictureInputProps = {
   error?: string;
 };
 
+type Preview = {
+  file: File;
+  url: string;
+};
+
 export function ProfilePictureInput({
   value,
   onChange,
   error,
 }: ProfilePictureInputProps) {
-  const [preview, setPreview] = useState<string | null>(null);
+  const [preview, setPreview] = useState<Preview | null>(null);
 
   useEffect(() => {
-    if (!value) {
+    return () => {
+      if (preview) {
+        URL.revokeObjectURL(preview.url);
+      }
+    };
+  }, [preview]);
+
+  const handleFileChange = (file: File | null) => {
+    if (file) {
+      setPreview({
+        file,
+        url: URL.createObjectURL(file),
+      });
+    } else {
       setPreview(null);
-      return;
     }
 
-    const objectUrl = URL.createObjectURL(value);
-    setPreview(objectUrl);
+    onChange(file);
+  };
 
-    return () => URL.revokeObjectURL(objectUrl);
-  }, [value]);
+  const previewUrl =
+    preview && preview.file === value ? preview.url : null;
 
   return (
     <div className="space-y-2">
@@ -38,12 +57,15 @@ export function ProfilePictureInput({
       </span>
 
       <div className="flex items-center gap-4">
-        <div className="flex size-16 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-green-soft">
-          {preview ? (
-            <img
-              src={preview}
+        <div className="relative flex size-16 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-green-soft">
+          {previewUrl ? (
+            <Image
+              src={previewUrl}
               alt="پیش‌نمایش تصویر پروفایل"
-              className="size-full object-cover"
+              fill
+              unoptimized
+              className="object-cover"
+              sizes="64px"
             />
           ) : (
             <ImagePlus className="size-6 text-primary" />
@@ -59,7 +81,7 @@ export function ProfilePictureInput({
               className="hidden"
               onChange={(event) => {
                 const file = event.target.files?.[0] ?? null;
-                onChange(file);
+                handleFileChange(file);
               }}
             />
           </label>
@@ -67,7 +89,7 @@ export function ProfilePictureInput({
           {value && (
             <button
               type="button"
-              onClick={() => onChange(null)}
+              onClick={() => handleFileChange(null)}
               className="rounded-xl p-2 text-muted-foreground transition hover:bg-secondary hover:text-destructive"
               aria-label="حذف تصویر"
             >
@@ -78,9 +100,7 @@ export function ProfilePictureInput({
       </div>
 
       {error && (
-        <p className="text-xs text-destructive">
-          {error}
-        </p>
+        <p className="text-xs text-destructive">{error}</p>
       )}
     </div>
   );

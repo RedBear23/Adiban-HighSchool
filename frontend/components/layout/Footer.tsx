@@ -1,6 +1,8 @@
+
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import {
   ArrowUp,
   Check,
@@ -26,44 +28,43 @@ export function Footer() {
     "address" | "phone" | null
   >(null);
 
+  async function copyToClipboard(
+    value: string,
+    field: "address" | "phone",
+  ) {
+    try {
+      await navigator.clipboard.writeText(value);
+    } catch {
+      const textarea = document.createElement("textarea");
 
-async function copyToClipboard(
-  value: string,
-  field: "address" | "phone",
-) {
-  try {
-    await navigator.clipboard.writeText(value);
-  } catch {
-    const textarea = document.createElement("textarea");
+      textarea.value = value;
+      textarea.setAttribute("readonly", "");
+      textarea.style.cssText =
+        "position:fixed;top:0;left:0;opacity:0;font-size:16px";
 
-    textarea.value = value;
-    textarea.setAttribute("readonly", "");
-    textarea.style.cssText =
-      "position:fixed;top:0;left:0;opacity:0;font-size:16px";
+      document.body.appendChild(textarea);
+      textarea.focus();
+      textarea.select();
+      textarea.setSelectionRange(0, value.length);
 
-    document.body.appendChild(textarea);
-    textarea.focus();
-    textarea.select();
-    textarea.setSelectionRange(0, value.length);
+      const copied = document.execCommand("copy");
 
-    const copied = document.execCommand("copy");
-    textarea.remove();
+      textarea.remove();
 
-    if (!copied) {
-      setCopiedField(null);
-      return;
+      if (!copied) {
+        setCopiedField(null);
+        return;
+      }
     }
+
+    setCopiedField(field);
+
+    setTimeout(() => {
+      setCopiedField((current) =>
+        current === field ? null : current,
+      );
+    }, 1800);
   }
-
-  setCopiedField(field);
-
-  setTimeout(() => {
-    setCopiedField((current) =>
-      current === field ? null : current,
-    );
-  }, 1800);
-}
-
 
   return (
     <footer
@@ -89,9 +90,12 @@ async function copyToClipboard(
           <div>
             <div className="flex items-center gap-3.5">
               <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white shadow-lg">
-                <img
+                <Image
                   src="/logo.jpg"
                   alt="لوگوی مدرسه ادیبان"
+                  width={56}
+                  height={56}
+                  unoptimized
                   className="rounded-full"
                 />
               </div>

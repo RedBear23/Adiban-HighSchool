@@ -1,5 +1,7 @@
+
 "use client";
 
+import Image from "next/image";
 import { ArrowUpLeft } from "lucide-react";
 
 import type { GalleryImage } from "@/types/gallery";
@@ -20,10 +22,13 @@ export function GalleryImageCard({
       aria-label={`مشاهده تصویر ${image.name}`}
       className="group relative mb-5 block w-full break-inside-avoid overflow-hidden rounded-2xl border border-border bg-card text-right"
     >
-      <img
+      <Image
         src={image.image}
         alt={image.name}
-        loading="lazy"
+        width={800}
+        height={600}
+        unoptimized
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         className="block h-auto w-full transition-transform duration-500 group-hover:scale-105"
       />
 

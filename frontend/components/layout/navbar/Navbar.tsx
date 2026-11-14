@@ -8,29 +8,23 @@ import { NotificationCenter } from "@/components/notifications/NotificationCente
 export default function Navbar() {
   return (
     <header
-      className="relative z-50 bg-primary shadow-[0_3px_14px_rgba(0,77,0,0.22)]"
       id="navbar"
+      className="relative z-50 border-b border-border bg-card shadow-sm"
     >
       <div className="mx-auto flex h-19 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        {/* Right side - Logo */}
         <NavbarLogo />
 
-        {/* Left side */}
-        <div className="flex items-center gap-3">
-          {/* Desktop navigation */}
+        <div className="flex items-center gap-2 lg:gap-5">
           <div className="hidden lg:block">
             <NavbarLinks />
           </div>
 
-          {/* Notifications */}
           <NotificationCenter />
 
-          {/* Authentication */}
           <div className="hidden lg:block">
             <NavbarAuth />
           </div>
 
-          {/* Mobile navigation */}
           <NavbarMobile />
         </div>
       </div>

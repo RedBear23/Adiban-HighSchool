@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { principal_data } from "./principal_data";
 
 export function PrincipalSection() {
@@ -45,9 +46,11 @@ export function PrincipalSection() {
               />
 
               <div className="relative aspect-4/5 overflow-hidden rounded-2xl border border-border bg-card shadow-md">
-                <img
+                <Image
                   src={principal_data.image}
                   alt={principal_data.name}
+                  fill
+                  unoptimized
                   className="h-full w-full object-cover"
                 />
               </div>

@@ -1,8 +1,9 @@
+
 "use client";
 
 import { useState } from "react";
 import { UserPlus, X } from "lucide-react";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { useAuth } from "@/contexts/AuthContext";
@@ -41,7 +42,7 @@ export function RegisterModal({
     handleSubmit,
     setValue,
     setError,
-    watch,
+    control,
     formState: { errors, isSubmitting },
   } = useForm<
     RegisterFormInput,
@@ -60,7 +61,10 @@ export function RegisterModal({
     },
   });
 
-  const profilePicture = watch("profile_picture");
+  const profilePicture = useWatch({
+    control,
+    name: "profile_picture",
+  });
 
   if (!isOpen) {
     return null;

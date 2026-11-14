@@ -1,3 +1,5 @@
+
+import Image from "next/image";
 import type { Teacher } from "@/types/teachers";
 
 type TeacherCardProps = {
@@ -13,11 +15,13 @@ export function TeacherCard({ teacher }: TeacherCardProps) {
     <article className="group overflow-hidden rounded-3xl border border-border bg-card shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
       {/* Teacher Image */}
       <div className="relative aspect-4/3 overflow-hidden">
-        <img
+        <Image
           src={teacher.image}
           alt={fullName}
-          loading="lazy"
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          unoptimized
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
 
         <div className="absolute inset-x-0 bottom-0 h-24 bg-linear-to-t from-dark/60 to-transparent" />

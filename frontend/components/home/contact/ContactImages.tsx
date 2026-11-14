@@ -1,11 +1,18 @@
+
+import Image from "next/image";
+
 export function ContactImages() {
   return (
     <div className="relative mx-auto w-full max-w-xl pb-14 sm:pb-16">
       {/* School Image */}
       <div className="overflow-hidden rounded-3xl shadow-sm">
-        <img
+        <Image
           src="/about/school-building.jpg"
           alt="ساختمان مدرسه ادیبان"
+          width={640}
+          height={384}
+          unoptimized
+          sizes="(max-width: 640px) 100vw, 576px"
           className="h-72 w-full object-cover sm:h-80 lg:h-96"
         />
 
@@ -16,9 +23,13 @@ export function ContactImages() {
       {/* Supervisor Card */}
       <div className="absolute -bottom-2 left-5 flex items-center gap-4 rounded-2xl bg-card p-3 pl-5 shadow-lg sm:left-8 sm:p-4 sm:pl-6">
         <div className="size-20 shrink-0 overflow-hidden rounded-2xl sm:size-24">
-          <img
+          <Image
             src="/teachers/supervisor.jpg"
             alt="معاون مدرسه ادیبان"
+            width={96}
+            height={96}
+            unoptimized
+            sizes="96px"
             className="h-full w-full object-cover"
           />
         </div>

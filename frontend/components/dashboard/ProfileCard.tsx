@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ShieldCheck, UserRound } from "lucide-react";
 
 import type {
@@ -29,12 +30,15 @@ export function ProfileCard({
 
       <div className="px-5 pb-6">
         <div className="-mt-12">
-          <div className="size-24 overflow-hidden rounded-2xl border-4 border-card bg-green-soft shadow-sm">
+          <div className="relative size-24 overflow-hidden rounded-2xl border-4 border-card bg-green-soft shadow-sm">
             {user.profile_picture ? (
-              <img
+              <Image
                 src={user.profile_picture}
                 alt={fullName}
-                className="h-full w-full object-cover"
+                fill
+                unoptimized
+                sizes="96px"
+                className="object-cover"
               />
             ) : (
               <div className="flex h-full w-full items-center justify-center text-primary">
