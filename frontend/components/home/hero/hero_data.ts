@@ -1,3 +1,4 @@
+
 export interface HeroSlideData {
   id: number;
   image: string;
@@ -17,16 +18,16 @@ export const heroSlides: HeroSlideData[] = [
   {
     id: 1,
     image: "/hero/slide-1.jpg",
-    title: "به مدرسه ادیبان خوش آمدید",
+    title: "به دنیای یادگیری ادیبان خوش آمدید",
     description:
-      "محیطی برای یادگیری، رشد و ساختن آینده‌ای بهتر.",
+      "جایی برای یادگیری، تجربه کردن و ساختن آینده‌ای روشن‌تر؛ همراه با دانش‌آموزانی که هر روز برای رشد و موفقیت قدم برمی‌دارند.",
     primaryAction: {
-      label: "درباره مدرسه",
+      label: "آشنایی با مدرسه",
       href: "/about",
     },
     secondaryAction: {
-      label: "مشاهده اخبار",
-      href: "/news",
+      label: "گالری تصاویر",
+      href: "/gallery",
     },
   },
   {
@@ -34,10 +35,10 @@ export const heroSlides: HeroSlideData[] = [
     image: "/hero/slide-2.jpg",
     title: "یادگیری، رشد، آینده",
     description:
-      "در ادیبان، مسیر یادگیری با تجربه و خلاقیت همراه است.",
+      "در ادیبان، مسیر یادگیری با تجربه، تلاش و خلاقیت همراه است.",
     primaryAction: {
-      label: "درباره مدرسه",
-      href: "/about",
+      label: "آخرین اخبار",
+      href: "/news",
     },
     secondaryAction: {
       label: "تماس با مدرسه",
@@ -49,13 +50,13 @@ export const heroSlides: HeroSlideData[] = [
     image: "/hero/slide-3.jpg",
     title: "جامعه‌ای برای رشد",
     description:
-      "مدرسه فقط یک مکان برای درس خواندن نیست.",
+      "مدرسه فقط مکانی برای درس خواندن نیست؛ فرصتی برای کشف استعدادها و ساختن تجربه‌های ارزشمند است.",
     primaryAction: {
       label: "کادر مدرسه",
       href: "/teachers",
     },
     secondaryAction: {
-      label: "گالری",
+      label: "گالری تصاویر",
       href: "/gallery",
     },
   },
