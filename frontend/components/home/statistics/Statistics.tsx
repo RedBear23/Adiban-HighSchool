@@ -87,7 +87,7 @@ export default function Statistics() {
         {/* عنوان بخش */}
         <div className="mb-8 text-right sm:mb-10">
           <div className="mb-3 flex items-center gap-3">
-            <span className="h-1 w-10 shrink-0 rounded-full bg-primary" />
+            <span className="h-1 w-12 shrink-0 rounded-full bg-primary" />
 
             <h2 className="text-2xl font-bold tracking-tight text-navy sm:text-3xl">
               آمار کل مدرسه ادیبان

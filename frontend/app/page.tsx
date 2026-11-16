@@ -9,7 +9,7 @@ export default function Home() {
     <main>
       <Hero />
       <Statistics />
-      <TeachersSection />
+      <TeachersSection featuredOnly/>
       <PrincipalSection />
       <TopStudentsSection />
     </main>
