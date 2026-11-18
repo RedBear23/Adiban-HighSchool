@@ -5,7 +5,7 @@ import { supervisor_data } from "./about_data";
 
 export function SupervisorStory() {
   return (
-    <section className="px-4 py-16 sm:px-6 lg:px-8">
+    <section className="px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
       <div className="mx-auto max-w-6xl">
         {/* Section Heading */}
         <div className="mb-10 text-center" dir="rtl">
@@ -57,18 +57,21 @@ export function SupervisorStory() {
               </div>
 
               {/* Text */}
-              <div className="flex flex-col justify-center px-1 py-4 sm:px-3 lg:px-4">
-                <span className="text-5xl leading-none text-primary/40">
+              <div className="flex flex-col justify-center px-1 py-4 text-center sm:px-3 lg:px-4">
+                <span
+                  aria-hidden="true"
+                  className="text-7xl font-serif leading-none text-primary/40 sm:text-8xl"
+                >
                   “
                 </span>
 
-                <blockquote className="mt-1 text-xl font-semibold leading-9 text-foreground sm:text-2xl">
+                <blockquote className="mt-2 text-xl font-semibold leading-10 text-foreground sm:text-2xl sm:leading-[2.2]">
                   {supervisor_data.quote}
                 </blockquote>
 
-                <div className="my-7 h-px w-20 bg-primary/30" />
+                <div className="mx-auto my-7 h-1 w-16 rounded-full bg-primary/40" />
 
-                <p className="text-base leading-8 text-muted-foreground">
+                <p className="text-sm leading-8 text-muted-foreground sm:text-base sm:leading-9">
                   {supervisor_data.description}
                 </p>
               </div>
