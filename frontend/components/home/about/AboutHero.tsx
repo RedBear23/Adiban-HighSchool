@@ -6,7 +6,7 @@ export function AboutHero() {
   return (
     <section
       dir="rtl"
-      className="px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20"
+      className="px-4 py-12"
     >
       <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
         {/* معرفی مدرسه */}

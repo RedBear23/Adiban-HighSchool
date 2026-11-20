@@ -10,11 +10,11 @@ export function SupervisorStory() {
         {/* Section Heading */}
         <div className="mb-10 text-center" dir="rtl">
           <span className="text-sm font-medium text-primary">
-            روایت اول
+            معاون مدرسه 
           </span>
 
           <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            از نگاه ناظم مدرسه
+            از نگاه معاون مدرسه
           </h2>
 
           <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-muted-foreground sm:text-base">
