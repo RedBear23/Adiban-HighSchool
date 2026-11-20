@@ -1,7 +1,10 @@
+
 "use client";
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 import { NewsDetail } from "@/components/home/news/NewsDetail";
 import { getNewsBySlug } from "@/services/news_services";
@@ -21,13 +24,11 @@ export default function NewsDetailPage() {
         setHasError(false);
 
         const slug = decodeURIComponent(params.slug);
-
         const data = await getNewsBySlug(slug);
 
         setNews(data);
       } catch (error) {
         console.error("Failed to load news:", error);
-
         setHasError(true);
       } finally {
         setIsLoading(false);
@@ -61,6 +62,14 @@ export default function NewsDetailPage() {
         <p className="mt-3 text-sm text-muted-foreground">
           خبر موردنظر وجود ندارد یا حذف شده است.
         </p>
+
+        <Link
+          href="/news"
+          className="mt-7 inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+        >
+          <ArrowRight className="size-4" />
+          بازگشت به اخبار
+        </Link>
       </div>
     );
   }

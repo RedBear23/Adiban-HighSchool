@@ -19,6 +19,7 @@ const vazirmatn = Vazirmatn({
   weight: ["400", "500", "600", "700"],
 });
 
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -28,9 +29,15 @@ export default function RootLayout({
     <html lang="fa" dir="rtl" className={vazirmatn.variable}>
       <body>
         <Providers>
-          <Navbar/>
-          {children}
-          <Footer/>
+          <div className="flex min-h-screen flex-col">
+            <Navbar />
+
+            <div className="flex-1">
+              {children}
+            </div>
+
+            <Footer />
+          </div>
         </Providers>
       </body>
     </html>

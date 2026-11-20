@@ -1,6 +1,8 @@
 
 import Image from "next/image";
+import Link from "next/link";
 import {
+  ArrowLeft,
   CalendarDays,
   Clock,
   UserRound,
@@ -29,6 +31,17 @@ export function NewsDetail({ news }: NewsDetailProps) {
       className="px-4 py-12 sm:px-6 lg:px-8 lg:py-16"
     >
       <div className="mx-auto max-w-4xl">
+        {/* Back Button */}
+        <div className="mb-7 flex">
+          <Link
+            href="/news"
+            className="mr-auto inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4"
+          >
+            بازگشت به اخبار
+            <ArrowLeft className="size-4" />
+          </Link>
+        </div>
+
         {/* Header */}
         <header className="mb-8">
           <div className="mb-4 flex items-center gap-2">

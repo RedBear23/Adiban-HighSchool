@@ -128,7 +128,7 @@ export function TopStudentsSection() {
           {scrollSnapCount > 1 && (
             <div
               className="mt-7 flex items-center justify-center gap-2"
-              dir="ltr"
+              dir="rtl"
               aria-label="موقعیت اسلایدها"
             >
               {Array.from({ length: scrollSnapCount }).map((_, index) => (
