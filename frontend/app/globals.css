@@ -213,3 +213,172 @@
 html {
   scroll-behavior: smooth;
 }
+
+
+/* =========================
+   Periodic Table Colors
+   ========================= */
+
+/* Light Theme */
+
+.element-cell,
+.element-legend-swatch {
+  background-color: var(--element-bg);
+  border-color: var(--element-border);
+  color: var(--element-text);
+}
+
+/* Alkali Metals */
+.element-cell[data-category="alkali-metal"],
+.element-legend-swatch[data-category="alkali-metal"] {
+  --element-bg: #fee2e2;
+  --element-border: #ef4444;
+  --element-text: #991b1b;
+}
+
+/* Alkaline Earth Metals */
+.element-cell[data-category="alkaline-earth-metal"],
+.element-legend-swatch[data-category="alkaline-earth-metal"] {
+  --element-bg: #ffedd5;
+  --element-border: #f97316;
+  --element-text: #9a3412;
+}
+
+/* Transition Metals */
+.element-cell[data-category="transition-metal"],
+.element-legend-swatch[data-category="transition-metal"] {
+  --element-bg: #fef9c3;
+  --element-border: #eab308;
+  --element-text: #854d0e;
+}
+
+/* Post-transition Metals */
+.element-cell[data-category="post-transition-metal"],
+.element-legend-swatch[data-category="post-transition-metal"] {
+  --element-bg: #ecfccb;
+  --element-border: #84cc16;
+  --element-text: #3f6212;
+}
+
+/* Metalloids */
+.element-cell[data-category="metalloid"],
+.element-legend-swatch[data-category="metalloid"] {
+  --element-bg: #ccfbf1;
+  --element-border: #14b8a6;
+  --element-text: #115e59;
+}
+
+/* Nonmetals */
+.element-cell[data-category="nonmetal"],
+.element-legend-swatch[data-category="nonmetal"] {
+  --element-bg: #dcfce7;
+  --element-border: #22c55e;
+  --element-text: #166534;
+}
+
+/* Halogens */
+.element-cell[data-category="halogen"],
+.element-legend-swatch[data-category="halogen"] {
+  --element-bg: #dbeafe;
+  --element-border: #3b82f6;
+  --element-text: #1e40af;
+}
+
+/* Noble Gases */
+.element-cell[data-category="noble-gas"],
+.element-legend-swatch[data-category="noble-gas"] {
+  --element-bg: #f3e8ff;
+  --element-border: #a855f7;
+  --element-text: #6b21a8;
+}
+
+/* Lanthanides */
+.element-cell[data-category="lanthanide"],
+.element-legend-swatch[data-category="lanthanide"] {
+  --element-bg: #fce7f3;
+  --element-border: #ec4899;
+  --element-text: #9d174d;
+}
+
+/* Actinides */
+.element-cell[data-category="actinide"],
+.element-legend-swatch[data-category="actinide"] {
+  --element-bg: #e7e5e4;
+  --element-border: #78716c;
+  --element-text: #44403c;
+}
+
+
+/* =========================
+   Dark Theme
+   ========================= */
+
+.dark .element-cell[data-category="alkali-metal"],
+.dark .element-legend-swatch[data-category="alkali-metal"] {
+  --element-bg: #4c1720;
+  --element-border: #ef4444;
+  --element-text: #fecaca;
+}
+
+.dark .element-cell[data-category="alkaline-earth-metal"],
+.dark .element-legend-swatch[data-category="alkaline-earth-metal"] {
+  --element-bg: #4a2410;
+  --element-border: #f97316;
+  --element-text: #fed7aa;
+}
+
+.dark .element-cell[data-category="transition-metal"],
+.dark .element-legend-swatch[data-category="transition-metal"] {
+  --element-bg: #45380b;
+  --element-border: #eab308;
+  --element-text: #fef08a;
+}
+
+.dark .element-cell[data-category="post-transition-metal"],
+.dark .element-legend-swatch[data-category="post-transition-metal"] {
+  --element-bg: #293d0b;
+  --element-border: #84cc16;
+  --element-text: #d9f99d;
+}
+
+.dark .element-cell[data-category="metalloid"],
+.dark .element-legend-swatch[data-category="metalloid"] {
+  --element-bg: #0f3d39;
+  --element-border: #14b8a6;
+  --element-text: #99f6e4;
+}
+
+.dark .element-cell[data-category="nonmetal"],
+.dark .element-legend-swatch[data-category="nonmetal"] {
+  --element-bg: #123d25;
+  --element-border: #22c55e;
+  --element-text: #bbf7d0;
+}
+
+.dark .element-cell[data-category="halogen"],
+.dark .element-legend-swatch[data-category="halogen"] {
+  --element-bg: #172f55;
+  --element-border: #3b82f6;
+  --element-text: #bfdbfe;
+}
+
+.dark .element-cell[data-category="noble-gas"],
+.dark .element-legend-swatch[data-category="noble-gas"] {
+  --element-bg: #381653;
+  --element-border: #a855f7;
+  --element-text: #e9d5ff;
+}
+
+.dark .element-cell[data-category="lanthanide"],
+.dark .element-legend-swatch[data-category="lanthanide"] {
+  --element-bg: #4a1835;
+  --element-border: #ec4899;
+  --element-text: #fbcfe8;
+}
+
+.dark .element-cell[data-category="actinide"],
+.dark .element-legend-swatch[data-category="actinide"] {
+  --element-bg: #35312e;
+  --element-border: #a8a29e;
+  --element-text: #e7e5e4;
+}
