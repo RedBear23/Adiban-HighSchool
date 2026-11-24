@@ -14,6 +14,7 @@ export function PeriodicTableGrid({
   selectedElement,
   onSelect,
 }: PeriodicTableGridProps) {
+  // عناصر اصلی جدول
   const mainElements = elements.filter(
     (element) =>
       element.category !== "lanthanide" &&
@@ -21,25 +22,35 @@ export function PeriodicTableGrid({
       element.group !== null,
   );
 
-  const lanthanides = elements
-    .filter((element) => element.category === "lanthanide")
-    .sort((a, b) => a.atomicNumber - b.atomicNumber);
+  // لانتان و اکتینیم در انتهای ردیف‌های اصلی قرار می‌گیرند.
+  const lanthanum = elements.find((element) => element.atomicNumber === 57);
+  const actinium = elements.find((element) => element.atomicNumber === 89);
 
-  const actinides = elements
-    .filter((element) => element.category === "actinide")
-    .sort((a, b) => a.atomicNumber - b.atomicNumber);
+  // بقیه لانتانیدها و اکتینیدها در ردیف‌های جداگانه نمایش داده می‌شوند.
+  const lanthanides = elements.filter(
+    (element) =>
+      element.category === "lanthanide" &&
+      element.atomicNumber !== 57,
+  );
+
+  const actinides = elements.filter(
+    (element) =>
+      element.category === "actinide" &&
+      element.atomicNumber !== 89,
+  );
 
   return (
-    <div className="w-full overflow-x-auto pb-4">
+    <div className="w-full overflow-x-auto pb-4" dir="ltr">
       <div
-        dir="ltr"
         className="
-          grid min-w-330
+          relative
+          grid min-w-345 sm:min-w-390
           grid-cols-[repeat(18,minmax(64px,1fr))]
-          grid-rows-[repeat(9,minmax(88px,auto))]
-          gap-2
+          grid-rows-[repeat(9,minmax(0,auto))] sm:grid-rows-[repeat(9,minmax(88px,auto))]
+          gap-1 sm:gap-2
         "
       >
+        {/* عناصر اصلی جدول */}
         {mainElements.map((element) => (
           <div
             key={element.atomicNumber}
@@ -58,46 +69,87 @@ export function PeriodicTableGrid({
           </div>
         ))}
 
+        {/* لانتان؛ بعد از باریم */}
+        {lanthanum && (
+          <div
+            style={{
+              gridColumn: 3,
+              gridRow: 6,
+            }}
+          >
+            <ElementCell
+              element={lanthanum}
+              isSelected={
+                selectedElement?.atomicNumber === lanthanum.atomicNumber
+              }
+              onSelect={onSelect}
+            />
+          </div>
+        )}
+
+        {/* اکتینیم؛ بعد از رادیم */}
+        {actinium && (
+          <div
+            style={{
+              gridColumn: 3,
+              gridRow: 7,
+            }}
+          >
+            <ElementCell
+              element={actinium}
+              isSelected={
+                selectedElement?.atomicNumber === actinium.atomicNumber
+              }
+              onSelect={onSelect}
+            />
+          </div>
+        )}
+
+      {/* راهنمای دسته‌بندی عناصر */}
+      <div
+        className="absolute mt-8 sm:mt-24"
+        style={{
+          gridColumn: "3 / 13",
+          gridRow: "1 / 4",
+          inset: 0,
+        }}
+      >
+        <ElementLegend />
+      </div>
+
+        {/* عنوان ردیف لانتانیدها */}
         <div
-          className="flex items-center justify-center"
-          style={{ gridColumn: "3 / 13", gridRow: "2 / 4" }}
+          dir="rtl"
+          className="flex items-center justify-center text-xs font-semibold text-muted-foreground"
+          style={{
+            gridColumn: "3 / 4",
+            gridRow: 8,
+          }}
         >
-          <ElementLegend />
+          ردیف لانتانیدها
+        </div>
+
+        {/* عنوان ردیف اکتینیدها */}
+        <div
+          dir="rtl"
+          className="flex items-center justify-center text-xs font-semibold text-muted-foreground"
+          style={{
+            gridColumn: "3 / 4",
+            gridRow: 9,
+          }}
+        >
+          ردیف اکتینیدها
         </div>
 
         {/* ردیف لانتانیدها */}
-        <div
-          dir="rtl"
-          className="
-            mt-6 flex items-center justify-center
-            rounded-xl border border-dashed border-border
-            bg-muted/50 p-2 text-xs font-semibold
-            text-muted-foreground
-          "
-          style={{ gridColumn: "1 / 4", gridRow: 8 }}
-        >
-          لانتانیدها
-        </div>
-
-        {/* ردیف اکتینیدها */}
-        <div
-          dir="rtl"
-          className="
-            mt-6 flex items-center justify-center
-            rounded-xl border border-dashed border-border
-            bg-muted/50 p-2 text-xs font-semibold
-            text-muted-foreground
-          "
-          style={{ gridColumn: "1 / 4", gridRow: 9 }}
-        >
-          اکتینیدها
-        </div>
-
         {lanthanides.map((element, index) => (
           <div
             key={element.atomicNumber}
             className="mt-8"
-            style={{ gridColumn: index + 4, gridRow: 8 }}
+            style={{
+              gridColumn: index + 4,
+              gridRow: 8,
+            }}
           >
             <ElementCell
               element={element}
@@ -109,10 +161,14 @@ export function PeriodicTableGrid({
           </div>
         ))}
 
+        {/* ردیف اکتینیدها */}
         {actinides.map((element, index) => (
           <div
             key={element.atomicNumber}
-            style={{ gridColumn: index + 4, gridRow: 9 }}
+            style={{
+              gridColumn: index + 4,
+              gridRow: 9,
+            }}
           >
             <ElementCell
               element={element}

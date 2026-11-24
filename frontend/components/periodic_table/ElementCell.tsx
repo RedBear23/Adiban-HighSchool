@@ -1,3 +1,4 @@
+
 import type { PeriodicElement } from "@/types/periodic_table";
 
 interface ElementCellProps {
@@ -19,13 +20,14 @@ export function ElementCell({
       aria-pressed={isSelected}
       data-category={element.category}
       className={`
-        element-cell relative flex h-full min-h-22 w-full
+        element-cell relative flex aspect-square h-auto min-h-0 w-full
         flex-col items-center justify-between
         rounded-xl border p-2 pt-5 pb-2
         text-center transition-all duration-200
         hover:z-10 hover:-translate-y-0.5 hover:shadow-md
         focus-visible:outline-2 focus-visible:outline-offset-2
         focus-visible:outline-primary
+        sm:aspect-auto sm:h-full sm:min-h-22
         ${isSelected ? "ring-2 ring-primary ring-offset-2" : ""}
       `}
     >
@@ -38,7 +40,7 @@ export function ElementCell({
       </span>
 
       <span className="line-clamp-2 flex min-h-7 w-full items-center justify-center text-[10px] leading-4 sm:text-xs">
-        {element.persian_name}
+        {element.persian_name} <br />{element.atomicMass}
       </span>
     </button>
   );
