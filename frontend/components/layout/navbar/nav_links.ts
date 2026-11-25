@@ -24,3 +24,11 @@ export const NAV_LINKS = [
     href: "/contact",
   },
 ] as const;
+
+// لینک‌های منوی آزمایشگاه
+export const NAV_LAB_LINKS = [
+  {
+    label: "جدول تناوبی",
+    href: "/laboratory/periodic-table",
+  },
+] as const;

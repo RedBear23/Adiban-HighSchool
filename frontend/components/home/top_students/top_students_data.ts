@@ -16,14 +16,14 @@ export const top_students_data: TopStudent[] = [
   },
   {
     name: "آرش متقی",
-    image: "/students/student-4.jpg",
+    image: "/students/student-2.jpg",
     score: "19.75",
     grade: "یازدهم",
     field: "علوم تجربی",
   },
   {
     name: "ماهان ظاهری",
-    image: "/students/student-7.jpg",
+    image: "/students/student-5.jpg",
     score: "19.65",
     grade: "یازدهم",
     field: "علوم تجربی",
