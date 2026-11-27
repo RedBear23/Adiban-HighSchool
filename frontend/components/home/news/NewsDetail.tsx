@@ -30,7 +30,7 @@ export function NewsDetail({ news }: NewsDetailProps) {
       dir="rtl"
       className="px-4 py-12 sm:px-6 lg:px-8 lg:py-16"
     >
-      <div className="mx-auto max-w-4xl">
+      <div className="mx-auto max-w-4xl min-w-0">
         {/* Back Button */}
         <div className="mb-7 flex">
           <Link
@@ -43,14 +43,14 @@ export function NewsDetail({ news }: NewsDetailProps) {
         </div>
 
         {/* Header */}
-        <header className="mb-8">
+        <header className="mb-8 min-w-0">
           <div className="mb-4 flex items-center gap-2">
             <span className="rounded-full bg-green-soft px-3 py-1 text-xs font-medium text-primary">
               اخبار مدرسه
             </span>
           </div>
 
-          <h1 className="text-3xl font-bold leading-12 text-foreground sm:text-4xl sm:leading-14">
+          <h1 className="wrap-break-word text-3xl font-bold leading-12 text-foreground sm:text-4xl sm:leading-14">
             {news.title}
           </h1>
 
@@ -108,12 +108,12 @@ export function NewsDetail({ news }: NewsDetailProps) {
               <Newspaper className="size-10" />
             </div>
 
-            <div className="max-w-xl">
+            <div className="max-w-xl min-w-0">
               <span className="text-sm font-medium text-primary">
                 اخبار مدرسه ادیبان
               </span>
 
-              <h2 className="mt-3 text-xl font-bold leading-9 text-card-foreground sm:text-2xl">
+              <h2 className="mt-3 wrap-break-word text-xl font-bold leading-9 text-card-foreground sm:text-2xl">
                 {news.title}
               </h2>
             </div>
@@ -121,8 +121,8 @@ export function NewsDetail({ news }: NewsDetailProps) {
         )}
 
         {/* Content */}
-        <div className="mt-8 rounded-2xl bg-card p-6 sm:p-8">
-          <p className="whitespace-pre-line text-base leading-9 text-card-foreground sm:text-lg">
+        <div className="mt-8 min-w-0 rounded-2xl bg-card p-6 sm:p-8">
+          <p className="wrap-break-word whitespace-pre-line text-base leading-9 text-card-foreground sm:text-lg">
             {news.descriptions}
           </p>
         </div>
