@@ -33,6 +33,10 @@ urlpatterns = [
         "api/notifications/",
         include("apps.notifications.urls"),
     ),
+    path(
+        "api/school-status/",
+        include("apps.school_status.urls"),
+    ),
 ]
 
 

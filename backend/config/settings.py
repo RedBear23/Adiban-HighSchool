@@ -68,6 +68,7 @@ INSTALLED_APPS = [
     "apps.gallery.apps.GalleryConfig",
     "apps.notifications.apps.NotificationsConfig",
     "apps.admin_panel.apps.AdminPanelConfig",
+    "apps.school_status.apps.SchoolStatusConfig",
 ]
 
 
@@ -178,7 +179,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "fa"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Asia/Tehran"
 
 USE_I18N = True
 

@@ -4,6 +4,7 @@ import NavbarLogo from "./NavbarLogo";
 import NavbarMobile from "./NavbarMobile";
 
 import { NotificationCenter } from "@/components/notifications/NotificationCenter";
+import { SchoolStatus } from "./NavbarSchoolStatus";
 
 export default function Navbar() {
   return (
@@ -18,6 +19,8 @@ export default function Navbar() {
           <div className="hidden lg:block">
             <NavbarLinks />
           </div>
+
+          <SchoolStatus />
 
           <NotificationCenter />
 
